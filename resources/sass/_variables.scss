@@ -18,7 +18,15 @@ $green: #38c172;
 $teal: #4dc0b5;
 $cyan: #6cb2eb;
 
-$theme-colors: (
-  "primary": #ae00d9,
-  "danger": #fffc36
+$theme-colors:(
+    'primary':#07689F,
+    "secondary":#C9D6DF,
+    "success":#11D3BC,
+    "danger":#F67280,
+    "info":#A2D5F2,
+    "warning":#FF7E67,
+    "light":#FAFAFA,
+    "dark":#4e4e4e,
+    "gray":#90A4AE,
 );
+

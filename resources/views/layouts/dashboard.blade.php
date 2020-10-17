@@ -75,17 +75,26 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Admin</div>
+        <div class="sidebar-heading">{{Auth::user()->roles->pluck('name')->first()}}</div>
             <div class="list-group list-group-flush">
-                @role('Tutor')
-                <a href="#" class="list-group-item list-group-item-action bg-light">Inicio</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Crear Cuentas</a>
-                @else
+                @hasrole('Tutor')
+                <a href="/home" class="list-group-item list-group-item-action bg-light">Inicio</a>
+                <button disabled class="list-group-item list-group-item-action bg-dark text-white">Crear Cuentas</button>
+                <a href="{{route('tutor.crearMonitor')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Monitor</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light" >Crear Alumno Tutorado</a>
+                <button disabled class="list-group-item list-group-item-action bg-dark text-white">Administracion de Cuentas</button>
+                <a href="{{route('tutor.alumnosMonitores')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
+                <a href="" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
+
+                @endrole
+                @hasrole('Admin')
                 <a href="#" class="list-group-item list-group-item-action bg-light">Reportes Recibidos</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Cuentas Tutor</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Cuentas Psicologo</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Estadistica</a>
+                @else
                 @endrole
+
             </div>
         </div>
         <!-- /#sidebar-wrapper -->
@@ -98,9 +107,10 @@
             </nav>
 
             <div class="container-fluid">
-                <h1 class="mt-4">Simple Sidebar</h1>
-                <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-                <p>Make sure to keep all page content within the <code>#page-content-wrapper</code>. The top navbar is optional, and just for demonstration. Just create an element with the <code>#menu-toggle</code> ID which will toggle the menu when clicked.</p>
+                <div class="container py-4">
+                    @yield('content')
+                </div>
+
             </div>
         </div>
         <!-- /#page-content-wrapper -->
@@ -108,12 +118,15 @@
     </div>
 
 </div>
+
 <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script>
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");
     });
+
+
 </script>
 </body>
 </html>
