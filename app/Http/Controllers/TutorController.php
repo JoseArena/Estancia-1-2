@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Carrera;
 use App\User;
 use App\AlumnoMonitor;
+use App\AlumnoTutorado;
 use App\Tutor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -53,11 +54,91 @@ class TutorController extends Controller
         return redirect('/tutor/alumnosMonitores')->with('msg', 'Alumno monitor creado satisfactoriamente.');
     }
 
-    public function showAlumnosMonitores(){
+    public function showAlumnosMonitores()
+    {
         $alumnos = AlumnoMonitor::paginate(15);
 
         return view('tutor.alumnosMonitores', [
             'alumnos' => $alumnos
         ]);
+    }
+    public  function  crearAlumnoTutorado()
+    {
+        $carreras = Carrera::all();
+        $monitores = AlumnoMonitor::all();
+        return view('tutor.crearTutorado', [
+            'carreras' => $carreras,
+            'monitores' => $monitores,
+        ]);
+    }
+    public function editarMonitor($id)
+    {
+        $carreras = Carrera::all();
+        $monitor = AlumnoMonitor::find($id);
+        return view('tutor.editarMonitor', [
+            'monitor' => $monitor,
+            'carreras' => $carreras
+        ]);
+    }
+
+    public function actualizarMonitor($id, Request $request)
+    {
+        $monitor = AlumnoMonitor::find($id);
+        $monitor->nombres = $request->nombres;
+        $monitor->apellidoM = $request->apellidoM;
+        $monitor->apellidoP = $request->apellidoP;
+        $monitor->carrera_id = $request->carrera;
+        $monitor->update();
+        return redirect('/tutor/alumnosMonitores')->with('msg', 'Alumno monitor actualizado satisfactoriamente.');
+    }
+
+    public function storeTutorado(Request $request)
+    {
+
+        $tutorado = new AlumnoTutorado();
+        $tutorado->nombres = $request->nombres;
+        $tutorado->apellidos = $request->apellidos;
+        $tutorado->carrera_id = $request->carrera;
+        $tutorado->grupo = $request->grupo;
+        $tutorado->cuatrimestre = $request->cuatrimestre;
+        $tutorado->alumno_monitor_id = $request->alumnoMonitorId;
+        $tutorado->descripcion = $request->descripcion;
+        $tutorado->save();
+        return redirect('/tutor/alumnosTutorados')->with('msg', 'Alumno tutorado creado satisfactoriamente.');
+    }
+    public function showAlumnostutorados()
+    {
+        $alumnos = AlumnoTutorado::paginate(15);
+
+        return view('tutor.alumnosTutorados', [
+            'alumnos' => $alumnos
+        ]);
+    }
+
+    public function editarTutorado($id)
+    {
+        $monitores = AlumnoMonitor::all();
+        $carreras = Carrera::all();
+        $tutorado = AlumnoTutorado::find($id);
+        $monitorSel = AlumnoMonitor::find($tutorado->alumno_monitor_id);
+        return view('tutor.editarTutorado', [
+            'tutorado' => $tutorado,
+            'carreras' => $carreras,
+            'monitores' => $monitores,
+            'monitorSel' => $monitorSel
+        ]);
+    }
+    public function actualizarTutorado($id, Request $request)
+    {
+        $tutorado = AlumnoTutorado::find($id);
+        $tutorado->nombres = $request->nombres;
+        $tutorado->apellidos = $request->apellidos;
+        $tutorado->carrera_id = $request->carrera;
+        $tutorado->grupo = $request->grupo;
+        $tutorado->cuatrimestre = $request->cuatrimestre;
+        $tutorado->alumno_monitor_id = $request->alumnoMonitorId;
+        $tutorado->descripcion = $request->descripcion;
+        $tutorado->update();
+        return redirect('/tutor/alumnosTutorados')->with('msg', 'Alumno tutorado actualizado satisfactoriamente.');
     }
 }

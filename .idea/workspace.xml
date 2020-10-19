@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dadf5b57-ecbe-4cf7-aaf7-276923d37f51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/tutor/alumnosMonitores.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/tutor/crearTutorado.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/aside.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/aside.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/classroom.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_variables.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TutorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TutorController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/dashboard.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
@@ -173,7 +167,9 @@
       <workItem from="1602690642016" duration="2597000" />
       <workItem from="1602809788928" duration="2715000" />
       <workItem from="1602896669777" duration="111000" />
-      <workItem from="1602896815981" duration="2364000" />
+      <workItem from="1602896815981" duration="3051000" />
+      <workItem from="1602953841917" duration="2028000" />
+      <workItem from="1602956068811" duration="316000" />
     </task>
     <servers />
   </component>
@@ -185,9 +181,13 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="640" y="277" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1602896724401" />
-    <state x="579" y="273" key="SettingsEditor" timestamp="1602687197805">
+    <state x="834" y="474" key="Laravel.ExtractPartialViewDialog" timestamp="1602956047951">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="579" y="273" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1602687197805" />
+    <state x="834" y="474" key="Laravel.ExtractPartialViewDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1602956047951" />
+    <state x="579" y="273" key="SettingsEditor" timestamp="1602956206811">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="579" y="273" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1602956206811" />
   </component>
 </project>

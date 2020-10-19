@@ -79,12 +79,12 @@
             <div class="list-group list-group-flush">
                 @hasrole('Tutor')
                 <a href="/home" class="list-group-item list-group-item-action bg-light">Inicio</a>
-                <button disabled class="list-group-item list-group-item-action bg-dark text-white">Crear Cuentas</button>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Crear Cuentas</button>
                 <a href="{{route('tutor.crearMonitor')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Monitor</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light" >Crear Alumno Tutorado</a>
-                <button disabled class="list-group-item list-group-item-action bg-dark text-white">Administracion de Cuentas</button>
+                <a href="{{route('tutor.crearTutorado')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Tutorado</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Administracion de Cuentas</button>
                 <a href="{{route('tutor.alumnosMonitores')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
-                <a href="" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
+                <a href="{{route('tutor.alumnosTutorados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
 
                 @endrole
                 @hasrole('Admin')

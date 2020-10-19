@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="card-footer text-right bg-white">
-            <button class="btn btn-info" type="submit">Crear</button>
+            <button class="btn btn-success text-white" type="submit">Crear</button>
         </div>
     </form>
     </div>

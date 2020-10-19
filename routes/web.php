@@ -1,5 +1,6 @@
 <?php
 
+use App\Tutor;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,21 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('tutor')->group(function () {
+    //alumnos monitores
     Route::get('/crearMonitor', 'TutorController@crearAlumnoMonitor')->name('tutor.crearMonitor');
     Route::post('/storeMonitor', 'TutorController@storeMonitor')->name('tutor.storeMonitor');
     Route::get('/alumnosMonitores', 'TutorController@showAlumnosMonitores')->name('tutor.alumnosMonitores');
+    //editar
+    Route::get('/editarMonitor/{id}', 'TutorController@editarMonitor')->name('tutor.editarMonitor');
+    Route::post('/actualizarMonitor/{id}', 'TutorController@actualizarMonitor')->name('tutor.actualizarMonitor');
+    //alumnos tutorados
+    Route::get('crearTutorado', 'TutorController@crearAlumnoTutorado')->name('tutor.crearTutorado');
+    Route::post('/storeTutorado', 'TutorController@storeTutorado')->name('tutor.storeTutorado');
+    Route::get('/alumnosTutorados', 'TutorController@showAlumnosTutorados')->name('tutor.alumnosTutorados');
+    Route::get('/editarTutorado/{id}', 'TutorController@editarTutorado')->name('tutor.editarTutorado');
+    Route::post('/actualizarTutorado/{id}', 'TutorController@actualizarTutorado')->name('tutor.actualizarTutorado');
+});
+
+Route::prefix('monitor')->group(function () {
+    Route::get('/alumnosTutorados/{id}', 'MonitorController@showTutorados')->name('monitor.alumnosTutorados');
 });
