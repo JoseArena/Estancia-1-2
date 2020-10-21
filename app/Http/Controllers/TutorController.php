@@ -7,6 +7,7 @@ use App\User;
 use App\AlumnoMonitor;
 use App\AlumnoTutorado;
 use App\Tutor;
+use App\TutoriaIndividual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -140,5 +141,43 @@ class TutorController extends Controller
         $tutorado->descripcion = $request->descripcion;
         $tutorado->update();
         return redirect('/tutor/alumnosTutorados')->with('msg', 'Alumno tutorado actualizado satisfactoriamente.');
+    }
+    public function reporteIndividual()
+    {
+        return view('tutor.reporteIndividual');
+    }
+    public function crearReporteIndividual(Request $request)
+    {
+        $id = Auth::user()->id;
+        $reporte = new TutoriaIndividual();
+        $reporte->alumno = $request->alumno;
+        $reporte->cuatrimestre = $request->cuatrimestre;
+        $reporte->turno = $request->turno;
+        $reporte->fecha = $request->fecha;
+        $reporte->tipo_tutoria = $request->tipo_tutoria;
+        $reporte->duracion = $request->duracion;
+        $reporte->observaciones = $request->observaciones;
+        $reporte->tutor_id = $id;
+        $reporte->save();
+        return redirect('/home');
+    }
+    public function reportesIndividuales()
+    {
+        $id = Auth::user()->id;
+        $reportes = TutoriaIndividual::where('tutor_id', '=', $id)->get();
+        return view('tutor.reportesIndividuales', [
+            'reportes' => $reportes,
+        ]);
+    }
+    public function reporteIndEdit($id)
+    {
+        $reporte = TutoriaIndividual::find($id);
+        return view('tutor.editReporteIndividual', [
+            'reporte' => $reporte
+        ]);
+    }
+    public function reporteIndUpdate($id, Request $request)
+    {
+        return $request;
     }
 }

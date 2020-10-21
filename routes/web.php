@@ -36,6 +36,12 @@ Route::prefix('tutor')->group(function () {
     Route::get('/alumnosTutorados', 'TutorController@showAlumnosTutorados')->name('tutor.alumnosTutorados');
     Route::get('/editarTutorado/{id}', 'TutorController@editarTutorado')->name('tutor.editarTutorado');
     Route::post('/actualizarTutorado/{id}', 'TutorController@actualizarTutorado')->name('tutor.actualizarTutorado');
+    //Reportes
+    Route::get('/reporteIndividual', 'TutorController@reporteIndividual')->name('tutor.reporteIndividual');
+    Route::post('/crearReporteIndividual', 'TutorController@crearReporteIndividual')->name('tutor.crearReporteIndividual');
+    Route::get('/reportesIndividuales', 'TutorController@reportesIndividuales')->name('tutor.reportesIndividuales');
+    Route::get('/reporteIndEdit/{id}', 'TutorController@reporteIndEdit')->name('tutor.reporteIndEdit');
+    Route::post('/reporteIndUpdate/{id}', 'TutorController@reporteIndUpdate')->name('tutor.reporteIndUpdate');
 });
 
 Route::prefix('monitor')->group(function () {

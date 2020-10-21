@@ -5,6 +5,7 @@
             {{ session('msg') }}
         </div>
     @endif
+    <h4>Alumnos Monitores</h4>
     <table class="table table-bordered table-responsive-sm">
         <thead class="bg-primary text-white">
         <tr>
