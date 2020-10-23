@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TutoriaIndividual extends Model
+class TutoriaGrupal extends Model
 {
-    protected $table = 'tutoria_individual';
+    protected $table = 'tutoria_grupal';
     protected $dates = ['created_at', 'updated_at', 'fecha'];
 }

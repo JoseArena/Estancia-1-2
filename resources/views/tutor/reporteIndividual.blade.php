@@ -44,8 +44,8 @@
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <div class="form-group">
-                            <label for="date">Fecha</label>
-                            <input required type="date" class="form-control" name="fecha">
+                            <label for="date">Fecha de Tutoria</label>
+                            <input required type="date" class="form-control datefield" name="fecha">
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-12">

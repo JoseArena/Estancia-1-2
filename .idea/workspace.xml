@@ -2,16 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dadf5b57-ecbe-4cf7-aaf7-276923d37f51" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/TutoriaIndividual.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/tutor/reporteIndividual.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/tutor/reportesIndividuales.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/tutorias-upb.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/tutorias-upb.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AlumnoMonitor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AlumnoMonitor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/AlumnoTutorado.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/AlumnoTutorado.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TutorController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TutorController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/dashboard.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/dashboard.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tutor/alumnosMonitores.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tutor/alumnosMonitores.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tutor/alumnosTutorados.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tutor/alumnosTutorados.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Tutor.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Tutor.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/TutoriaIndividual.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/TutoriaIndividual.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tutor/editReporteIndividual.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tutor/editReporteIndividual.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tutor/reporteIndividual.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tutor/reporteIndividual.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -131,6 +132,7 @@
       <path value="$PROJECT_DIR$/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/swiftmailer/swiftmailer" />
+      <path value="$PROJECT_DIR$/vendor/jenssegers/date" />
     </include_path>
   </component>
   <component name="ProjectId" id="1iqdeIXAVM9nrdrLJQlqHFFAHVn" />
@@ -179,6 +181,7 @@
       <workItem from="1602953841917" duration="2028000" />
       <workItem from="1602956068811" duration="316000" />
       <workItem from="1603240089476" duration="3217000" />
+      <workItem from="1603327242970" duration="618000" />
     </task>
     <servers />
   </component>

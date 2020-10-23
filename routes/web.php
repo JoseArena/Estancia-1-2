@@ -36,12 +36,18 @@ Route::prefix('tutor')->group(function () {
     Route::get('/alumnosTutorados', 'TutorController@showAlumnosTutorados')->name('tutor.alumnosTutorados');
     Route::get('/editarTutorado/{id}', 'TutorController@editarTutorado')->name('tutor.editarTutorado');
     Route::post('/actualizarTutorado/{id}', 'TutorController@actualizarTutorado')->name('tutor.actualizarTutorado');
-    //Reportes
+    //Reportes Individuales
     Route::get('/reporteIndividual', 'TutorController@reporteIndividual')->name('tutor.reporteIndividual');
     Route::post('/crearReporteIndividual', 'TutorController@crearReporteIndividual')->name('tutor.crearReporteIndividual');
     Route::get('/reportesIndividuales', 'TutorController@reportesIndividuales')->name('tutor.reportesIndividuales');
     Route::get('/reporteIndEdit/{id}', 'TutorController@reporteIndEdit')->name('tutor.reporteIndEdit');
     Route::post('/reporteIndUpdate/{id}', 'TutorController@reporteIndUpdate')->name('tutor.reporteIndUpdate');
+    //Reportes Grupales
+    Route::get('/reporteGrupal', 'TutorController@reporteGrupal')->name('tutor.reporteGrupal');
+    Route::post('/crearReporteGrupal', 'TutorController@crearReporteGrupal')->name('tutor.crearReporteGrupal');
+    Route::get('/reportesGrupales', 'TutorController@reportesGrupales')->name('tutor.reportesGrupales');
+    Route::get('/reporteGrupEdit/{id}', 'TutorController@reporteGrupEdit')->name('tutor.reporteGrupEdit');
+    Route::post('/reporteGrupUpdate/{id}', 'TutorController@reporteGrupUpdate')->name('tutor.reporteGrupUpdate');
 });
 
 Route::prefix('monitor')->group(function () {

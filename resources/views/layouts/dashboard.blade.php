@@ -88,6 +88,9 @@
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Individuales</button>
                 <a href="{{route('tutor.reporteIndividual')}}" class="list-group-item list-group-item-action bg-light" >Crear Reporte</a>
                 <a href="{{route('tutor.reportesIndividuales')}}" class="list-group-item list-group-item-action bg-light" >Reportes Individuales</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Grupales</button>
+                <a href="{{route('tutor.reporteGrupal')}}" class="list-group-item list-group-item-action bg-light" >Crear Reporte</a>
+                <a href="{{route('tutor.reportesGrupales')}}" class="list-group-item list-group-item-action bg-light" >Reportes Grupales</a>
 
                 @endrole
                 @hasrole('Admin')

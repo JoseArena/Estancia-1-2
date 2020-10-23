@@ -7,6 +7,7 @@ use App\User;
 use App\AlumnoMonitor;
 use App\AlumnoTutorado;
 use App\Tutor;
+use App\TutoriaGrupal;
 use App\TutoriaIndividual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -149,6 +150,9 @@ class TutorController extends Controller
     public function crearReporteIndividual(Request $request)
     {
         $id = Auth::user()->id;
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_id = $tutor->id;
+
         $reporte = new TutoriaIndividual();
         $reporte->alumno = $request->alumno;
         $reporte->cuatrimestre = $request->cuatrimestre;
@@ -157,14 +161,17 @@ class TutorController extends Controller
         $reporte->tipo_tutoria = $request->tipo_tutoria;
         $reporte->duracion = $request->duracion;
         $reporte->observaciones = $request->observaciones;
-        $reporte->tutor_id = $id;
+        $reporte->tutor_id = $tutor_id;
         $reporte->save();
-        return redirect('/home');
+        return redirect('/tutor/reportesIndividuales')->with('msg', 'Tutoria individual creada satisfactoriamente.');
     }
     public function reportesIndividuales()
     {
         $id = Auth::user()->id;
-        $reportes = TutoriaIndividual::where('tutor_id', '=', $id)->get();
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_id = $tutor->id;
+
+        $reportes = TutoriaIndividual::where('tutor_id', '=', $tutor_id)->get();
         return view('tutor.reportesIndividuales', [
             'reportes' => $reportes,
         ]);
@@ -178,6 +185,70 @@ class TutorController extends Controller
     }
     public function reporteIndUpdate($id, Request $request)
     {
-        return $request;
+        $reporte = TutoriaIndividual::find($id);
+        $reporte->alumno = $request->alumno;
+        $reporte->cuatrimestre = $request->cuatrimestre;
+        $reporte->turno = $request->turno;
+        $reporte->fecha = $request->fecha;
+        $reporte->tipo_tutoria = $request->tipo_tutoria;
+        $reporte->duracion = $request->duracion;
+        $reporte->observaciones = $request->observaciones;
+        $reporte->update();
+
+        return redirect('/tutor/reportesIndividuales')->with('msg', 'Tutoria individual actualizada satisfactoriamente.');
+    }
+
+    public function reporteGrupal()
+    {
+        return view('tutor.reporteGrupal');
+    }
+
+    public function crearReporteGrupal(Request $request)
+    {
+        $id = Auth::user()->id;
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_id = $tutor->id;
+
+        $reporte =  new TutoriaGrupal();
+        $reporte->cuatrimestre = $request->cuatrimestre;
+        $reporte->turno = $request->turno;
+        $reporte->grupo = $request->grupo;
+        $reporte->fecha = $request->fecha;
+        $reporte->dinamica = $request->dinamica;
+        $reporte->observaciones = $request->observaciones;
+        $reporte->tutor_id = $tutor_id;
+        $reporte->save();
+        return redirect('/home');
+    }
+    public function reportesGrupales()
+    {
+        $id = Auth::user()->id;
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_id = $tutor->id;
+
+        $reportes = TutoriaGrupal::where('tutor_id', '=', $tutor_id)->get();
+        return view('tutor.reportesGrupales', [
+            'reportes' => $reportes,
+        ]);
+    }
+    public function reporteGrupEdit($id)
+    {
+        $reporte = TutoriaGrupal::find($id);
+        return view('tutor.editReporteGrupal', [
+            'reporte' => $reporte
+        ]);
+    }
+    public function reporteGrupUpdate($id, Request $request)
+    {
+        $reporte = TutoriaGrupal::find($id);
+        $reporte->cuatrimestre = $request->cuatrimestre;
+        $reporte->turno = $request->turno;
+        $reporte->grupo = $request->grupo;
+        $reporte->fecha = $request->fecha;
+        $reporte->dinamica = $request->dinamica;
+        $reporte->observaciones = $request->observaciones;
+        $reporte->update();
+
+        return redirect('/tutor/reportesGrupales')->with('msg', 'Tutoria grupal actualizada satisfactoriamente.');
     }
 }
