@@ -51,9 +51,9 @@
                 @else
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            {{ Auth::user()->name }}
+                           {{ Auth::user()->name }}
+                           <img src="{{asset('/storage/imagenesPerfil/' . auth()->user()->tutor()->first()->perfil_slug)}}" alt="Foto de Perfil" width="30px" height="30px" class="avatar">
                         </a>
-
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
@@ -64,6 +64,7 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+                            <a href="{{route('tutor.perfil')}}" class="dropdown-item">Perfil</a>
                         </div>
                     </li>
                 @endguest
@@ -134,5 +135,11 @@
 
 
 </script>
+
+<style>
+    .avatar{
+        border-radius: 50%;
+    }
+</style>
 </body>
 </html>

@@ -48,6 +48,11 @@ Route::prefix('tutor')->group(function () {
     Route::get('/reportesGrupales', 'TutorController@reportesGrupales')->name('tutor.reportesGrupales');
     Route::get('/reporteGrupEdit/{id}', 'TutorController@reporteGrupEdit')->name('tutor.reporteGrupEdit');
     Route::post('/reporteGrupUpdate/{id}', 'TutorController@reporteGrupUpdate')->name('tutor.reporteGrupUpdate');
+
+    //Perfil
+    Route::get('/perfil', 'TutorController@perfil')->name('tutor.perfil');
+    Route::get('/editPerfil', 'TutorController@editPerfil')->name('tutor.editPerfil');
+    Route::post('/updatePerfil', 'TutorController@updatePerfil')->name('tutor.updatePerfil');
 });
 
 Route::prefix('monitor')->group(function () {

@@ -12,6 +12,7 @@ use App\TutoriaIndividual;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class TutorController extends Controller
@@ -250,5 +251,45 @@ class TutorController extends Controller
         $reporte->update();
 
         return redirect('/tutor/reportesGrupales')->with('msg', 'Tutoria grupal actualizada satisfactoriamente.');
+    }
+
+    public function perfil()
+    {
+        return view('tutor.perfil');
+    }
+    public function editPerfil()
+    {
+        $carreras = Carrera::all();
+        $tutor = auth()->user()->tutor()->first();
+        // return $tutor;
+        return view('tutor.editPerfil', [
+            'tutor' => $tutor,
+            'carreras' => $carreras
+        ]);
+    }
+
+    public function updatePerfil(Request $request)
+    {
+        $tutor = auth()->user()->tutor()->first();
+        $tutor->nombres = $request->nombres;
+        $tutor->apellidoM = $request->apellidoM;
+        $tutor->apellidoP = $request->apellidoP;
+        $tutor->carrera_id = $request->carrera_id;
+        $tutor->descripcion = $request->descripcion;
+        $tutor->horario = $request->horario;
+        $tutor->update();
+        if ($request->hasFile('perfil_slug')) {
+
+            $fileName = $request->perfil_slug->getClientOriginalname();
+
+            if (auth()->user()->tutor()->first()->perfil_slug) {
+                Storage::delete('/public/imagenesPerfil' . auth()->user()->tutor()->first()->perfil_slug);
+            }
+
+            $request->perfil_slug->storeAs('imagenesPerfil', $fileName, 'public');
+            auth()->user()->tutor()->first()->update(['perfil_slug' => $fileName]);
+        }
+
+        return redirect('/tutor/perfil')->with('msg', 'Perfil actualizado satisfactoriamente.');
     }
 }
