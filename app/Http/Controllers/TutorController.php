@@ -255,7 +255,10 @@ class TutorController extends Controller
 
     public function perfil()
     {
-        return view('tutor.perfil');
+        $tutor = auth()->user()->tutor()->first();
+        return view('tutor.perfil', [
+            'tutor' => $tutor
+        ]);
     }
     public function editPerfil()
     {
@@ -279,11 +282,9 @@ class TutorController extends Controller
         $tutor->horario = $request->horario;
         $tutor->update();
         if ($request->hasFile('perfil_slug')) {
-
             $fileName = $request->perfil_slug->getClientOriginalname();
-
             if (auth()->user()->tutor()->first()->perfil_slug) {
-                Storage::delete('/public/imagenesPerfil' . auth()->user()->tutor()->first()->perfil_slug);
+                Storage::delete('/public/imagenesPerfil/' . auth()->user()->tutor()->first()->perfil_slug);
             }
 
             $request->perfil_slug->storeAs('imagenesPerfil', $fileName, 'public');
