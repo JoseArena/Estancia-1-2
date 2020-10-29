@@ -11,7 +11,8 @@
         <tr>
             <th scope="col">Grupo</th>
             <th scope="col">Cuatrimestre</th>
-            <th scope="col">Fecha Creada</th>
+            <th scope="col">Dinamica</th>
+            <th scope="col">Fecha Realizada</th>
             <th scope="col">Fecha Actualizada</th>
             <th scope="col">Acciones</th>
         </tr>
@@ -21,8 +22,9 @@
             <tr>
                 <th scope="row">{{$reporte->grupo}}</th>
                 <td>{{$reporte->cuatrimestre}}</td>
-                <td>{{$reporte->fecha}}</td>
-                <td>{{$reporte->updated_at}}</td>
+                <td>{{$reporte->dinamica}}</td>
+                <td>{{Carbon\Carbon::parse($reporte->fecha)->format('d-m-Y')}}</td>
+                <td>{{Carbon\Carbon::parse($reporte->updated_at)->format('d-m-Y')}}</td>
                 <td>
                 <a href="{{route('tutor.reporteGrupEdit', $reporte->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
                     <a class="btn btn-sm btn-danger text-white">Eliminar</a>
