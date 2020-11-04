@@ -1,7 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-4">
+<style>
+    .login-form{
+        height: 100%;
+    }
+</style>
+<div class="container py-4 mt-6" id="login-form">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

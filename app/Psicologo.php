@@ -4,12 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Tutor extends Model
+class Psicologo extends Model
 {
-    protected $table = 'tutores';
+    protected $table = 'psicologos';
     protected $fillable = [
         'perfil_slug'
     ];
     protected $dates = ['created_at', 'updated_at'];
-    
 }

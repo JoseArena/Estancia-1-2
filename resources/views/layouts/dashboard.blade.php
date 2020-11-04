@@ -52,7 +52,9 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                            {{ Auth::user()->name }}
+                           @isset(auth()->user()->tutor()->first()->perfil_slug)
                            <img src="{{asset('/storage/imagenesPerfil/' . auth()->user()->tutor()->first()->perfil_slug)}}" alt="Foto de Perfil" width="30px" height="30px" class="avatar">
+                           @endisset 
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -64,7 +66,9 @@
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
+                            @hasrole('Tutor')
                             <a href="{{route('tutor.perfil')}}" class="dropdown-item">Perfil</a>
+                            @endrole
                         </div>
                     </li>
                 @endguest
@@ -83,6 +87,10 @@
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Crear Cuentas</button>
                 <a href="{{route('tutor.crearMonitor')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Monitor</a>
                 <a href="{{route('tutor.crearTutorado')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Tutorado</a>
+                @hasrole('Admin')
+                <a href="{{route('admin.crearTutor')}}" class="list-group-item list-group-item-action bg-light" >Crear Tutor</a>
+                <a href="{{route('admin.crearPsicologo')}}" class="list-group-item list-group-item-action bg-light" >Crear Psicologo</a>
+                @endrole
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Administracion de Cuentas</button>
                 <a href="{{route('tutor.alumnosMonitores')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
                 <a href="{{route('tutor.alumnosTutorados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
@@ -95,9 +103,10 @@
 
                 @endrole
                 @hasrole('Admin')
+                <button disabled class="list-group-item list-group-item-action bg-danger text-white">Administracion</button>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Reportes Recibidos</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Cuentas Tutor</a>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Cuentas Psicologo</a>
+                <a href="{{route('admin.Tutores')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Tutores</a>
+                <a href="{{route('admin.Psicologos')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Psicologos</a>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Estadistica</a>
                 @else
                 @endrole

@@ -10,6 +10,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-sm-12 text-center p-5">
+                    
                     <img src="{{asset('/storage/imagenesPerfil/' . $tutor->perfil_slug)}}" alt="Foto de Perfil" width="200px">
                 </div>
                 <div class="col-lg-6 col-sm-12 p-5">

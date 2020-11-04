@@ -58,3 +58,15 @@ Route::prefix('tutor')->group(function () {
 Route::prefix('monitor')->group(function () {
     Route::get('/alumnosTutorados/{id}', 'MonitorController@showTutorados')->name('monitor.alumnosTutorados');
 });
+
+Route::prefix('admin')->group(function () {
+    //tutores
+    Route::get('/crearTutor', 'AdminController@crearTutor')->name('admin.crearTutor');
+    Route::post('/storeTutor', 'AdminController@storeTutor')->name('admin.storeTutor');
+    Route::get('/tutores', 'AdminController@showTutores')->name('admin.Tutores');
+    Route::get('/alumnosMonitores/{id}', 'AdminController@showMonitoresTutor')->name('admin.alumnosMonitores');
+    //psicologos
+    Route::get('/crearPsicologo', 'AdminController@crearPsicologo')->name('admin.crearPsicologo');
+    Route::post('/storePsicologo', 'AdminController@storePsicologo')->name('admin.storePsicologo');
+    Route::get('/psicologos', 'AdminController@showPsicologos')->name('admin.Psicologos');
+});

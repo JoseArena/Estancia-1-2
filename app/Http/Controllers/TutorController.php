@@ -59,7 +59,9 @@ class TutorController extends Controller
 
     public function showAlumnosMonitores()
     {
-        $alumnos = AlumnoMonitor::paginate(15);
+
+        $id = Auth::user()->id;
+        $alumnos = AlumnoMonitor::where('tutor_id', '=', $id)->orderBy('created_at', 'DESC')->paginate(15);
 
         return view('tutor.alumnosMonitores', [
             'alumnos' => $alumnos
@@ -111,7 +113,10 @@ class TutorController extends Controller
     }
     public function showAlumnostutorados()
     {
-        $alumnos = AlumnoTutorado::paginate(15);
+        $id = Auth::user()->id;
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_carrera = $tutor->carrera_id;
+        $alumnos = AlumnoTutorado::where('carrera_id', '=', $tutor_carrera)->paginate(15);
 
         return view('tutor.alumnosTutorados', [
             'alumnos' => $alumnos

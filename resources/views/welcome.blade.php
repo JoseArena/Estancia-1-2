@@ -5,7 +5,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Inicio-Programa de Tutorías y Tutorías </title>
+        <title>Programa de Tutorías y Tutorías </title>
+        <link rel="icon" href="{{ URL::asset('/icons/tut.png') }}">
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
         <!-- Google fonts-->
@@ -37,11 +38,11 @@
                             <li class="nav-item">
                             <a class="nav-link" href="{{ route('login') }}">Iniciar Sesion</a>
                             </li>
-                            {{-- @if (Route::has('register'))
+                            @if (Route::has('register'))
                             <li class="nav-item">
                             <a class="nav-link js-scroll-trigger" href="{{ route('register') }}">Register</a>
                             </li>
-                            @endif --}}
+                            @endif
                         @endauth
                     </ul>
                 </div>
