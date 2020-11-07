@@ -5,7 +5,7 @@
             {{ session('msg') }}
         </div>
     @endif
-    <h4>Tutores</h4>
+    <h4>Psicologos</h4>
     <table class="table table-bordered table-responsive-sm">
         <thead class="bg-primary text-white">
         <tr>
@@ -21,12 +21,13 @@
             <th scope="row">{{$psicologo->nombres}}</th>
             <td>{{$psicologo->apellidoM}}</td>
             <td>{{$psicologo->apellidoP}}</td>
-            <td>
+            <td style="white-space: nowrap;
+            width: 1%;">
             <a href="" class="btn btn-sm btn-success text-white">Editar</a>
-            <a href="" class="btn btn-sm btn-warning text-white">Alumnos Monitores</a>
             </td>
         </tr>
         @endforeach
         </tbody>
     </table>
+    {{ $psicologos->links() }}
 @endsection

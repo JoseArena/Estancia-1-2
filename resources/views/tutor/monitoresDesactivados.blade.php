@@ -5,15 +5,15 @@
             {{ session('msg') }}
         </div>
     @endif
-    <h4>Alumnos Tutorados</h4>
-    <table class="table table-bordered">
+    <h4>Alumnos Monitores Desactivados</h4>
+    <table class="table table-bordered table-responsive-sm">
         <thead class="bg-primary text-white">
         <tr>
             <th scope="col">Nombres</th>
-            <th scope="col">Apellidos</th>
-            <th scope="col">Cuatrimestre</th>
+            <th scope="col">Apellido Materno</th>
+            <th scope="col">Apellido Paterno</th>
             <th scope="col">Carrera</th>
-            <th scope="col">Grupo</th>
+            <th scope="col">Alumnos Asignados</th>
             <th scope="col">Acciones</th>
         </tr>
         </thead>
@@ -21,13 +21,13 @@
         @foreach($alumnos as  $alumno)
         <tr>
             <th scope="row">{{$alumno->nombres}}</th>
-            <td>{{$alumno->apellidos}}</td>
-            <td>{{$alumno->cuatrimestre}}</td>
+            <td>{{$alumno->apellidoM}}</td>
+            <td>{{$alumno->apellidoP}}</td>
             <td>{{\Illuminate\Support\Facades\DB::table('carreras')->where('id', $alumno->carrera_id)->value('carrera')}}</td>
-            <td>{{$alumno->grupo}}</td>
-            <td>
-                <a href="{{route('tutor.editarTutorado', $alumno->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
-                <a href="{{route('tutor.desactivarTutorado', $alumno->id)}}" class="btn btn-sm btn-danger text-white">Eliminar</a>
+            <td class="text-center">{{count(DB::table('alumno_tutorado')->where('alumno_monitor_id', '=' , $alumno->id)->get())}}</td>
+            <td style="white-space: nowrap;
+            width: 1%;">
+            <a href="{{route('tutor.activarMonitor', $alumno->id)}}" class="btn btn-sm btn-success text-white">Activar</a>
             </td>
         </tr>
         @endforeach

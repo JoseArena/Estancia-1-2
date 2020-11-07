@@ -61,21 +61,13 @@ class TutorController extends Controller
     {
 
         $id = Auth::user()->id;
-        $alumnos = AlumnoMonitor::where('tutor_id', '=', $id)->orderBy('created_at', 'DESC')->paginate(15);
+        $alumnos = AlumnoMonitor::where('tutor_id', '=', $id)->where('activo', '=', 1)->orderBy('created_at', 'DESC')->paginate(15);
 
         return view('tutor.alumnosMonitores', [
             'alumnos' => $alumnos
         ]);
     }
-    public  function  crearAlumnoTutorado()
-    {
-        $carreras = Carrera::all();
-        $monitores = AlumnoMonitor::all();
-        return view('tutor.crearTutorado', [
-            'carreras' => $carreras,
-            'monitores' => $monitores,
-        ]);
-    }
+
     public function editarMonitor($id)
     {
         $carreras = Carrera::all();
@@ -97,6 +89,40 @@ class TutorController extends Controller
         return redirect('/tutor/alumnosMonitores')->with('msg', 'Alumno monitor actualizado satisfactoriamente.');
     }
 
+    public function desactivarMonitor($id)
+    {
+        $alumno = AlumnoMonitor::find($id);
+        $alumno->activo = 0;
+        $alumno->update();
+        return redirect('/tutor/alumnosMonitores')->with('msg', 'Alumno monitor desactivado satisfactoriamente');
+    }
+    public function monitoresDesactivados()
+    {
+        $id = Auth::user()->id;
+        $alumnos = AlumnoMonitor::where('tutor_id', '=', $id)->where('activo', '=', 0)->orderBy('created_at', 'DESC')->paginate(15);
+
+        return view('tutor.monitoresDesactivados', [
+            'alumnos' => $alumnos
+        ]);
+    }
+
+    public function activarMonitor($id)
+    {
+        $alumno = AlumnoMonitor::find($id);
+        $alumno->activo = 1;
+        $alumno->update();
+        return redirect('/tutor/alumnosMonitores')->with('msg', 'Alumno monitor activado satisfactoriamente');
+    }
+
+    public  function  crearAlumnoTutorado()
+    {
+        $carreras = Carrera::all();
+        $monitores = AlumnoMonitor::all();
+        return view('tutor.crearTutorado', [
+            'carreras' => $carreras,
+            'monitores' => $monitores,
+        ]);
+    }
     public function storeTutorado(Request $request)
     {
 
@@ -116,7 +142,7 @@ class TutorController extends Controller
         $id = Auth::user()->id;
         $tutor = Tutor::where('user_id', '=', $id)->first();
         $tutor_carrera = $tutor->carrera_id;
-        $alumnos = AlumnoTutorado::where('carrera_id', '=', $tutor_carrera)->paginate(15);
+        $alumnos = AlumnoTutorado::where('carrera_id', '=', $tutor_carrera)->where('activo', '=', 1)->orderBy('created_at', 'DESC')->paginate(15);
 
         return view('tutor.alumnosTutorados', [
             'alumnos' => $alumnos
@@ -149,6 +175,34 @@ class TutorController extends Controller
         $tutorado->update();
         return redirect('/tutor/alumnosTutorados')->with('msg', 'Alumno tutorado actualizado satisfactoriamente.');
     }
+    public function desactivarTutorado($id)
+    {
+        $alumno = AlumnoTutorado::find($id);
+        $alumno->activo = 0;
+        $alumno->update();
+        return redirect('/tutor/alumnosTutorados')->with('msg', 'Alumno tutorado desactivado satisfactoriamente');
+    }
+    public function tutoradosDesactivados()
+    {
+        $id = Auth::user()->id;
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_carrera = $tutor->carrera_id;
+        $alumnos = AlumnoTutorado::where('carrera_id', '=', $tutor_carrera)->where('activo', '=', 0)->orderBy('created_at', 'DESC')->paginate(15);
+
+        return view('tutor.tutoradosDesactivados', [
+            'alumnos' => $alumnos
+        ]);
+    }
+
+    public function activarTutorado($id)
+    {
+        $alumno = AlumnoTutorado::find($id);
+        $alumno->activo = 1;
+        $alumno->update();
+        return redirect('/tutor/alumnosTutorados')->with('msg', 'Alumno tutorado activado satisfactoriamente');
+    }
+
+
     public function reporteIndividual()
     {
         return view('tutor.reporteIndividual');
@@ -177,7 +231,7 @@ class TutorController extends Controller
         $tutor = Tutor::where('user_id', '=', $id)->first();
         $tutor_id = $tutor->id;
 
-        $reportes = TutoriaIndividual::where('tutor_id', '=', $tutor_id)->get();
+        $reportes = TutoriaIndividual::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->paginate(15);
         return view('tutor.reportesIndividuales', [
             'reportes' => $reportes,
         ]);
@@ -203,10 +257,20 @@ class TutorController extends Controller
 
         return redirect('/tutor/reportesIndividuales')->with('msg', 'Tutoria individual actualizada satisfactoriamente.');
     }
+    public function reporteIndVer($id)
+    {
+        $reporte = TutoriaIndividual::find($id);
+        return view('tutor.verReporteIndividual', [
+            'reporte' => $reporte
+        ]);
+    }
 
     public function reporteGrupal()
     {
-        return view('tutor.reporteGrupal');
+        $carreras = Carrera::all();
+        return view('tutor.reporteGrupal', [
+            'carreras' => $carreras
+        ]);
     }
 
     public function crearReporteGrupal(Request $request)
@@ -219,6 +283,7 @@ class TutorController extends Controller
         $reporte->cuatrimestre = $request->cuatrimestre;
         $reporte->turno = $request->turno;
         $reporte->grupo = $request->grupo;
+        $reporte->carrera_id = $request->carrera_id;
         $reporte->fecha = $request->fecha;
         $reporte->dinamica = $request->dinamica;
         $reporte->observaciones = $request->observaciones;
@@ -232,7 +297,7 @@ class TutorController extends Controller
         $tutor = Tutor::where('user_id', '=', $id)->first();
         $tutor_id = $tutor->id;
 
-        $reportes = TutoriaGrupal::where('tutor_id', '=', $tutor_id)->get();
+        $reportes = TutoriaGrupal::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->paginate(15);
         return view('tutor.reportesGrupales', [
             'reportes' => $reportes,
         ]);
@@ -255,7 +320,20 @@ class TutorController extends Controller
         $reporte->observaciones = $request->observaciones;
         $reporte->update();
 
-        return redirect('/tutor/reportesGrupales')->with('msg', 'Tutoria grupal actualizada satisfactoriamente.');
+        $id = Auth::user()->id;
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        if (isset($tutor)) {
+            return redirect('/tutor/reportesGrupales')->with('msg', 'Tutoria grupal actualizada satisfactoriamente.');
+        } else {
+            return redirect('/admin/reportesGrupales')->with('msg', 'Tutoria grupal actualizada satisfactoriamente.');
+        }
+    }
+    public function reporteGrupVer($id)
+    {
+        $reporte = TutoriaGrupal::find($id);
+        return view('tutor.verReporteGrupal', [
+            'reporte' => $reporte
+        ]);
     }
 
     public function perfil()

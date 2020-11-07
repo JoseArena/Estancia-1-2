@@ -25,12 +25,15 @@
             <td>{{$alumno->apellidoP}}</td>
             <td>{{\Illuminate\Support\Facades\DB::table('carreras')->where('id', $alumno->carrera_id)->value('carrera')}}</td>
             <td class="text-center">{{count(DB::table('alumno_tutorado')->where('alumno_monitor_id', '=' , $alumno->id)->get())}}</td>
-            <td>
+            <td style="white-space: nowrap;
+            width: 1%;">
             <a href="{{route('tutor.editarMonitor', $alumno->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
             <a href="{{route('monitor.alumnosTutorados', $alumno->id)}}" class="btn btn-sm btn-warning text-white">Alumnos Tutorados</a>
+            <a href="{{route('tutor.desactivarMonitor', $alumno->id)}}" class="btn btn-sm btn-danger text-white">Eliminar</a>
             </td>
         </tr>
         @endforeach
         </tbody>
     </table>
+    {{ $alumnos->links() }}
 @endsection

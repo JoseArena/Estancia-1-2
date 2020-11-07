@@ -11,5 +11,11 @@ class Tutor extends Model
         'perfil_slug'
     ];
     protected $dates = ['created_at', 'updated_at'];
-    
+
+    public function nombreCompleto($id)
+    {
+        $tutor = Tutor::find($id);
+        $fullName = '' . $tutor->nombres . ' ' . $tutor->apellidoP . ' ' . $tutor->apellidoM;
+        return $fullName;
+    }
 }

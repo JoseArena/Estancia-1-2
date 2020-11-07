@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Anuncio;
 use Illuminate\Support\Facades\Auth;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -28,7 +29,13 @@ class HomeController extends Controller
     {
         //$role = Role::create(['name' => 'Psicologo']);
         // $user = Auth::user();
-        // $user->assignRole('Admin');
+        // $user->removeRole('Tutor');
+        $anuncios = Anuncio::where('activo', 1)->orderBy('created_at', 'DESC')->paginate(15);
+        if (isset($anuncios)) {
+            return view('home', [
+                'anuncios' => $anuncios
+            ]);
+        }
         return view('home');
     }
 }

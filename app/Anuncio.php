@@ -4,10 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AlumnoTutorado extends Model
+class Anuncio extends Model
 {
-    protected $table = 'alumno_tutorado';
+    protected $table = 'anuncios';
     protected $dates = ['created_at', 'updated_at'];
-
-    
 }

@@ -48,12 +48,22 @@
                 </div>
             </div>
         </nav>
+     
         <!-- Masthead-->
         <header class="masthead">
             <div class="container h-100">
                 <div class="row h-100 align-items-center justify-content-center text-center">
+                    {{-- Logos --}}
+                    <div class="container col-12 row">
+                        <div class="col-6">
+                            <img src="{{asset('img/logo_upb.png')}}" alt="" height="300px" width="400px">
+                        </div>
+                        <div class="col-6">
+                            <img src="{{asset('img/logo_tutorias.png')}}" alt="" height="300px" width="400px">
+                        </div>
+                    </div>
                     <div class="col-lg-10 align-self-end">
-                        <h1 class="text-uppercase text-white font-weight-bold">PROGRAMA DE ASESORÍAS Y TUTORÍAS</h1>
+                        <h1 class="text-uppercase text-white font-weight-bold">PROGRAMA DE TUTORÍAS</h1>
                         <hr class="divider my-4" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">

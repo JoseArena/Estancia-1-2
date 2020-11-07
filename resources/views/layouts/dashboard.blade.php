@@ -52,9 +52,17 @@
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                            {{ Auth::user()->name }}
+                           @hasrole('Tutor')
                            @isset(auth()->user()->tutor()->first()->perfil_slug)
                            <img src="{{asset('/storage/imagenesPerfil/' . auth()->user()->tutor()->first()->perfil_slug)}}" alt="Foto de Perfil" width="30px" height="30px" class="avatar">
                            @endisset 
+                           @endrole
+                           @hasrole('Admin')
+                           @isset(auth()->user()->admin()->first()->perfil_slug)
+                           <img src="{{asset('/storage/imagenesPerfil/admin/' . auth()->user()->admin()->first()->perfil_slug)}}" alt="Foto de Perfil" width="30px" height="30px" class="avatar">
+                           @endisset 
+                           @endrole
+                          
                         </a>
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -69,6 +77,9 @@
                             @hasrole('Tutor')
                             <a href="{{route('tutor.perfil')}}" class="dropdown-item">Perfil</a>
                             @endrole
+                            @hasrole('Admin')
+                            <a href="{{route('admin.perfil')}}" class="dropdown-item">Perfil</a>
+                            @endrole
                         </div>
                     </li>
                 @endguest
@@ -80,17 +91,19 @@
 
         <!-- Sidebar -->
         <div class="bg-light border-right" id="sidebar-wrapper">
-        <div class="sidebar-heading">{{Auth::user()->roles->pluck('name')->first()}}</div>
+        <div class="sidebar-heading">
+            @if (Auth::user()->roles->pluck('name')->first()=='Admin')
+            <a href="/home" style="text-decoration: none; color:rgb(66, 65, 65);"><h5>Administrador</h5></a>
+            @else
+            {{Auth::user()->roles->pluck('name')->first()}}
+            @endif
+            </div>
             <div class="list-group list-group-flush">
                 @hasrole('Tutor')
                 <a href="/home" class="list-group-item list-group-item-action bg-light">Inicio</a>
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Crear Cuentas</button>
                 <a href="{{route('tutor.crearMonitor')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Monitor</a>
                 <a href="{{route('tutor.crearTutorado')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Tutorado</a>
-                @hasrole('Admin')
-                <a href="{{route('admin.crearTutor')}}" class="list-group-item list-group-item-action bg-light" >Crear Tutor</a>
-                <a href="{{route('admin.crearPsicologo')}}" class="list-group-item list-group-item-action bg-light" >Crear Psicologo</a>
-                @endrole
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Administracion de Cuentas</button>
                 <a href="{{route('tutor.alumnosMonitores')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
                 <a href="{{route('tutor.alumnosTutorados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
@@ -100,15 +113,26 @@
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Grupales</button>
                 <a href="{{route('tutor.reporteGrupal')}}" class="list-group-item list-group-item-action bg-light" >Crear Reporte</a>
                 <a href="{{route('tutor.reportesGrupales')}}" class="list-group-item list-group-item-action bg-light" >Reportes Grupales</a>
-
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Cuentas Desactivadas</button>
+                <a href="{{route('tutor.monitoresDesactivados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
+                <a href="{{route('tutor.tutoradosDesactivados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
                 @endrole
                 @hasrole('Admin')
-                <button disabled class="list-group-item list-group-item-action bg-danger text-white">Administracion</button>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Reportes Recibidos</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Creacion de Cuentas</button>
+                <a href="{{route('admin.crearTutor')}}" class="list-group-item list-group-item-action bg-light" >Crear Tutor</a>
+                <a href="{{route('admin.crearPsicologo')}}" class="list-group-item list-group-item-action bg-light" >Crear Psicologo</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Recibidos</button>
+                <a href="{{route('admin.reportesGrupales')}}" class="list-group-item list-group-item-action bg-light">Reportes Grupales</a>
+                <a href="{{route('admin.reportesIndividuales')}}" class="list-group-item list-group-item-action bg-light">Reportes Individuales</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Cuentas</button>
                 <a href="{{route('admin.Tutores')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Tutores</a>
                 <a href="{{route('admin.Psicologos')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Psicologos</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Anuncios</button>
+                <a href="{{route('admin.crearAnuncio')}}" class="list-group-item list-group-item-action bg-light">Nuevo anuncio</a>
+                <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios en Plataforma</a>
+                {{-- <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios Desactivados</a> --}}
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Extras</button>
                 <a href="#" class="list-group-item list-group-item-action bg-light">Estadistica</a>
-                @else
                 @endrole
 
             </div>

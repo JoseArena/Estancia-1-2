@@ -27,6 +27,12 @@ Route::prefix('tutor')->group(function () {
     Route::get('/crearMonitor', 'TutorController@crearAlumnoMonitor')->name('tutor.crearMonitor');
     Route::post('/storeMonitor', 'TutorController@storeMonitor')->name('tutor.storeMonitor');
     Route::get('/alumnosMonitores', 'TutorController@showAlumnosMonitores')->name('tutor.alumnosMonitores');
+    //desactivar monitor
+    Route::get('/desactivarMonitor/{id}', 'TutorController@desactivarMonitor')->name('tutor.desactivarMonitor');
+    //activar monitor
+    Route::get('/activarMonitor/{id}', 'TutorController@activarMonitor')->name('tutor.activarMonitor');
+    //Cuentas desactivadas
+    Route::get('/monitoresDesactivados', 'TutorController@monitoresDesactivados')->name('tutor.monitoresDesactivados');
     //editar
     Route::get('/editarMonitor/{id}', 'TutorController@editarMonitor')->name('tutor.editarMonitor');
     Route::post('/actualizarMonitor/{id}', 'TutorController@actualizarMonitor')->name('tutor.actualizarMonitor');
@@ -36,18 +42,26 @@ Route::prefix('tutor')->group(function () {
     Route::get('/alumnosTutorados', 'TutorController@showAlumnosTutorados')->name('tutor.alumnosTutorados');
     Route::get('/editarTutorado/{id}', 'TutorController@editarTutorado')->name('tutor.editarTutorado');
     Route::post('/actualizarTutorado/{id}', 'TutorController@actualizarTutorado')->name('tutor.actualizarTutorado');
+    //desactivar monitor
+    Route::get('/desactivarTutorado/{id}', 'TutorController@desactivarTutorado')->name('tutor.desactivarTutorado');
+    //Cuentas desactivadas
+    Route::get('/tutoradosDesactivados', 'TutorController@tutoradosDesactivados')->name('tutor.tutoradosDesactivados');
+    //activar tutorado
+    Route::get('/activarTutorado/{id}', 'TutorController@activarTutorado')->name('tutor.activarTutorado');
     //Reportes Individuales
     Route::get('/reporteIndividual', 'TutorController@reporteIndividual')->name('tutor.reporteIndividual');
     Route::post('/crearReporteIndividual', 'TutorController@crearReporteIndividual')->name('tutor.crearReporteIndividual');
     Route::get('/reportesIndividuales', 'TutorController@reportesIndividuales')->name('tutor.reportesIndividuales');
     Route::get('/reporteIndEdit/{id}', 'TutorController@reporteIndEdit')->name('tutor.reporteIndEdit');
     Route::post('/reporteIndUpdate/{id}', 'TutorController@reporteIndUpdate')->name('tutor.reporteIndUpdate');
+    Route::get('/reporteIndVer/{id}', 'TutorController@reporteIndVer')->name('tutor.reporteIndVer');
     //Reportes Grupales
     Route::get('/reporteGrupal', 'TutorController@reporteGrupal')->name('tutor.reporteGrupal');
     Route::post('/crearReporteGrupal', 'TutorController@crearReporteGrupal')->name('tutor.crearReporteGrupal');
     Route::get('/reportesGrupales', 'TutorController@reportesGrupales')->name('tutor.reportesGrupales');
     Route::get('/reporteGrupEdit/{id}', 'TutorController@reporteGrupEdit')->name('tutor.reporteGrupEdit');
     Route::post('/reporteGrupUpdate/{id}', 'TutorController@reporteGrupUpdate')->name('tutor.reporteGrupUpdate');
+    Route::get('/reporteGrupVer/{id}', 'TutorController@reporteGrupVer')->name('tutor.reporteGrupVer');
 
     //Perfil
     Route::get('/perfil', 'TutorController@perfil')->name('tutor.perfil');
@@ -60,6 +74,10 @@ Route::prefix('monitor')->group(function () {
 });
 
 Route::prefix('admin')->group(function () {
+    //perfil
+    Route::get('/perfil', 'AdminController@perfil')->name('admin.perfil');
+    Route::get('/editPerfil', 'AdminController@editPerfil')->name('admin.editPerfil');
+    Route::post('/updatePerfil', 'AdminController@updatePerfil')->name('admin.updatePerfil');
     //tutores
     Route::get('/crearTutor', 'AdminController@crearTutor')->name('admin.crearTutor');
     Route::post('/storeTutor', 'AdminController@storeTutor')->name('admin.storeTutor');
@@ -69,4 +87,14 @@ Route::prefix('admin')->group(function () {
     Route::get('/crearPsicologo', 'AdminController@crearPsicologo')->name('admin.crearPsicologo');
     Route::post('/storePsicologo', 'AdminController@storePsicologo')->name('admin.storePsicologo');
     Route::get('/psicologos', 'AdminController@showPsicologos')->name('admin.Psicologos');
+    //Reportes Grupales
+    Route::get('/reportesGrupales', 'AdminController@reportesGrupales')->name('admin.reportesGrupales');
+    Route::get('/reportesIndividuales', 'AdminController@reportesIndividuales')->name('admin.reportesIndividuales');
+    //anuncios
+    Route::get('/anuncios', 'AdminController@anuncios')->name('admin.anuncios');
+    Route::get('/crearAnuncio', 'AdminController@crearAnuncio')->name('admin.crearAnuncio');
+    Route::post('/storeAnuncio', 'AdminController@storeAnuncio')->name('admin.storeAnuncio');
+    Route::get('/anuncioEdit/{id}', 'AdminController@anuncioEdit')->name('admin.anuncioEdit');
+    Route::post('/anuncioUpdate/{id}', 'AdminController@anuncioUpdate')->name('admin.anuncioUpdate');
+    Route::get('/anuncioDelete/{id}', 'AdminController@anuncioDelete')->name('admin.anuncioDelete');
 });

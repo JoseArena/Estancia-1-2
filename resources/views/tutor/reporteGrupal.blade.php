@@ -50,12 +50,20 @@
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <div class="form-group">
-                            <label for="dinamica">Dinámica</label>
-                            <select required name="dinamica" id="" class="form-control">
-                                <option selected disabled value="">Dinámica</option>
-                                <option value="Tecnicas de Estudio">Tecnicas de Estudio</option>
-                                <option value="Tecnicas de trabajo intelectual">Tecnicas de trabajo intelectual</option>
+                            <label for="carrera">Carrera</label>
+                            <select required name="carrera_id" id="" class="form-control">
+                                <option selected disabled value="">Carrera</option>
+                                @foreach ($carreras as $carrera)
+                            <option value="{{$carrera->id}}">{{$carrera->carrera}}</option>
+                                @endforeach
                             </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="dinamica">Dinamica</label>
+                            <br>
+                            <textarea name="dinamica" class="form-control" rows="10" cols="40"></textarea>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12">

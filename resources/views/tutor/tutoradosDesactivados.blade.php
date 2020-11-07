@@ -26,8 +26,7 @@
             <td>{{\Illuminate\Support\Facades\DB::table('carreras')->where('id', $alumno->carrera_id)->value('carrera')}}</td>
             <td>{{$alumno->grupo}}</td>
             <td>
-                <a href="{{route('tutor.editarTutorado', $alumno->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
-                <a href="{{route('tutor.desactivarTutorado', $alumno->id)}}" class="btn btn-sm btn-danger text-white">Eliminar</a>
+                <a href="{{route('tutor.activarTutorado', $alumno->id)}}" class="btn btn-sm btn-success text-white">Activar</a>
             </td>
         </tr>
         @endforeach
