@@ -6,7 +6,9 @@
 -- Generation Time: Nov 10, 2020 at 06:54 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
-
+drop database tutorias;
+create database tutorias;
+use tutorias;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;

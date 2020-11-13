@@ -206,4 +206,30 @@ class AdminController extends Controller
         $anuncio->forceDelete();
         return redirect('/admin/anuncios')->with('msg', 'Anuncio eliminado satistfactoriamente');
     }
+
+    public function estadisticas(Request $request)
+    {
+        $nombreTutor = $request -> get('tutoBuscarPor');
+        $tipoTutor = $request->get('tutorTipo');
+
+        $nombrePsico = $request -> get('psicoBuscarPor');
+        $tipoPsico = $request->get('psicoTipo');
+
+        $nombreAlum = $request -> get('alumBuscarPor');
+        $tipoAlum = $request->get('alumTipo');
+
+        $tutores = Tutor::buscarPor($tipoTutor,$nombreTutor)->paginate(5);
+
+        $psicologos = Psicologo::buscarPor($tipoPsico,$nombrePsico)->paginate(5);
+
+        $alumnos = AlumnoMonitor::buscarPor($tipoAlum,$nombreAlum)->paginate(5);
+
+
+        return view('admin.estadisticas', [
+            'tutores' => $tutores,
+            'psicologos' => $psicologos,
+            'alumnos' => $alumnos
+        ]);
+
+    }
 }

@@ -18,4 +18,10 @@ class Tutor extends Model
         $fullName = '' . $tutor->nombres . ' ' . $tutor->apellidoP . ' ' . $tutor->apellidoM;
         return $fullName;
     }
+
+    public function scopeBuscarPor($query,$tipo,$buscar){
+        if( ($tipo) && ($buscar) ){
+            return $query->where($tipo, 'like', "%$buscar%");
+        }
+    }
 }

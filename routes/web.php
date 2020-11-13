@@ -97,4 +97,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/anuncioEdit/{id}', 'AdminController@anuncioEdit')->name('admin.anuncioEdit');
     Route::post('/anuncioUpdate/{id}', 'AdminController@anuncioUpdate')->name('admin.anuncioUpdate');
     Route::get('/anuncioDelete/{id}', 'AdminController@anuncioDelete')->name('admin.anuncioDelete');
+
+    //Estadisticas
+    Route::get('/estadisticas', 'AdminController@estadisticas')->name('admin.estadisticas');
 });

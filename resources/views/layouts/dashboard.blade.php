@@ -132,7 +132,7 @@
                 <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios en Plataforma</a>
                 {{-- <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios Desactivados</a> --}}
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Extras</button>
-                <a href="#" class="list-group-item list-group-item-action bg-light">Estadistica</a>
+                <a href="{{route('admin.estadisticas')}}" class="list-group-item list-group-item-action bg-light">Estadistica</a>
                 @endrole
 
             </div>
