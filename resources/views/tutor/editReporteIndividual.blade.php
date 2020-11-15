@@ -43,6 +43,17 @@
                     </div>
                     <div class="col-lg-4 col-sm-12">
                         <div class="form-group">
+                            <label for="turno">Carrera</label>
+                            <select required name="carrera_id" id="" class="form-control">
+                                <option selected value="{{$reporte->carrera_id}}">{{\Illuminate\Support\Facades\DB::table('carreras')->where('id', $reporte->carrera_id)->value('carrera')}}</option>
+                                @foreach ($carreras as $carrera)
+                            <option value="{{$carrera->id}}">{{$carrera->carrera}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-group">
                             <label for="date">Fecha de Tutoria</label>
                         <input required type="date" class="form-control datefield" name="fecha" value="{{$reporte->fecha->format('Y-m-d')}}">
                         

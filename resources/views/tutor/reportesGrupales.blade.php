@@ -5,6 +5,11 @@
             {{ session('msg') }}
         </div>
     @endif
+    @if(count($reportes) <= 0)
+    <div class="alert alert-danger " role="alert">
+        {{$message}}
+    </div>
+    @endif
     <h4>Tutorias Grupales</h4>
     <table class="table table-bordered">
         <thead class="bg-primary text-white">
@@ -27,9 +32,11 @@
                 <td>{{$reporte->dinamica}}</td>
                 <td>{{Carbon\Carbon::parse($reporte->fecha)->format('d-m-Y')}}</td>
                 <td>{{Carbon\Carbon::parse($reporte->updated_at)->format('d-m-Y')}}</td>
-                <td>
+                <td style="white-space: nowrap;
+                width: 1%;">
                 <a href="{{route('tutor.reporteGrupEdit', $reporte->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
-                    <a class="btn btn-sm btn-danger text-white">Eliminar</a>
+                    {{-- <a class="btn btn-sm btn-danger text-white">Eliminar</a> --}}
+                    <a class="btn btn-sm btn-warning text-white" href="{{route('tutor.printRepGrup', $reporte->id)}}">Imprimir</a>
                 </td>
             </tr>
         @endforeach

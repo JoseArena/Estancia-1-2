@@ -1,5 +1,6 @@
 @extends('layouts.dashboard')
 @section('content')
+
 <div class="card">
     <div class="card-header bg-primary text-white">Informe de tutoría individual</div>
         <div class="card-body">
@@ -64,6 +65,17 @@
                         <div class="form-group">
                             <label for="duracion">Duración (min)</label>
                             <input required type="number" class="form-control" name="duracion">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="carrera">Carrera</label>
+                            <select required name="carrera_id" id="" class="form-control">
+                                <option selected disabled value="">Carrera</option>
+                                @foreach ($carreras as $carrera)
+                            <option value="{{$carrera->id}}">{{$carrera->carrera}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-lg-12 col-sm-12">

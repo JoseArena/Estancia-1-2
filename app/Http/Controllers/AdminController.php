@@ -10,6 +10,7 @@ use App\Tutor;
 use App\TutoriaGrupal;
 use App\TutoriaIndividual;
 use App\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -144,9 +145,10 @@ class AdminController extends Controller
     public function showMonitoresTutor($id)
     {
         $alumnos = AlumnoMonitor::where('tutor_id', '=', $id)->paginate(15);
-
+        $message = 'No hay Alumnos';
         return view('tutor.alumnosMonitores', [
-            'alumnos' => $alumnos
+            'alumnos' => $alumnos,
+            'message' => $message
         ]);
     }
 
@@ -209,20 +211,20 @@ class AdminController extends Controller
 
     public function estadisticas(Request $request)
     {
-        $nombreTutor = $request -> get('tutoBuscarPor');
+        $nombreTutor = $request->get('tutoBuscarPor');
         $tipoTutor = $request->get('tutorTipo');
 
-        $nombrePsico = $request -> get('psicoBuscarPor');
+        $nombrePsico = $request->get('psicoBuscarPor');
         $tipoPsico = $request->get('psicoTipo');
 
-        $nombreAlum = $request -> get('alumBuscarPor');
+        $nombreAlum = $request->get('alumBuscarPor');
         $tipoAlum = $request->get('alumTipo');
 
-        $tutores = Tutor::buscarPor($tipoTutor,$nombreTutor)->paginate(5);
+        $tutores = Tutor::buscarPor($tipoTutor, $nombreTutor)->paginate(5);
 
-        $psicologos = Psicologo::buscarPor($tipoPsico,$nombrePsico)->paginate(5);
+        $psicologos = Psicologo::buscarPor($tipoPsico, $nombrePsico)->paginate(5);
 
-        $alumnos = AlumnoMonitor::buscarPor($tipoAlum,$nombreAlum)->paginate(5);
+        $alumnos = AlumnoMonitor::buscarPor($tipoAlum, $nombreAlum)->paginate(5);
 
 
         return view('admin.estadisticas', [
@@ -230,6 +232,5 @@ class AdminController extends Controller
             'psicologos' => $psicologos,
             'alumnos' => $alumnos
         ]);
-
     }
 }

@@ -5,6 +5,11 @@
             {{ session('msg') }}
         </div>
     @endif
+    @if(count($alumnos) <= 0)
+    <div class="alert alert-danger " role="alert">
+        {{$message}}
+    </div>
+    @endif
     <h4>Alumnos Monitores</h4>
     <table class="table table-bordered table-responsive-sm">
         <thead class="bg-primary text-white">

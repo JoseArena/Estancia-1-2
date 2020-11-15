@@ -9,6 +9,7 @@ use App\AlumnoTutorado;
 use App\Tutor;
 use App\TutoriaGrupal;
 use App\TutoriaIndividual;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -62,9 +63,10 @@ class TutorController extends Controller
 
         $id = Auth::user()->id;
         $alumnos = AlumnoMonitor::where('tutor_id', '=', $id)->where('activo', '=', 1)->orderBy('created_at', 'DESC')->paginate(15);
-
+        $message = 'No hay Alumnos';
         return view('tutor.alumnosMonitores', [
-            'alumnos' => $alumnos
+            'alumnos' => $alumnos,
+            'message' => $message
         ]);
     }
 
@@ -205,7 +207,10 @@ class TutorController extends Controller
 
     public function reporteIndividual()
     {
-        return view('tutor.reporteIndividual');
+        $carreras = Carrera::all();
+        return view('tutor.reporteIndividual', [
+            'carreras' => $carreras
+        ]);
     }
     public function crearReporteIndividual(Request $request)
     {
@@ -222,25 +227,30 @@ class TutorController extends Controller
         $reporte->duracion = $request->duracion;
         $reporte->observaciones = $request->observaciones;
         $reporte->tutor_id = $tutor_id;
+        $reporte->carrera_id = $request->carrera_id;
         $reporte->save();
         return redirect('/tutor/reportesIndividuales')->with('msg', 'Tutoria individual creada satisfactoriamente.');
     }
-    public function reportesIndividuales()
+    public function reportesIndividuales($id)
     {
-        $id = Auth::user()->id;
+        // $id = Auth::user()->id;
         $tutor = Tutor::where('user_id', '=', $id)->first();
         $tutor_id = $tutor->id;
 
         $reportes = TutoriaIndividual::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->paginate(15);
+        $message = 'No hay reportes';
         return view('tutor.reportesIndividuales', [
             'reportes' => $reportes,
+            'message' => $message
         ]);
     }
     public function reporteIndEdit($id)
     {
+        $carreras = Carrera::all();
         $reporte = TutoriaIndividual::find($id);
         return view('tutor.editReporteIndividual', [
-            'reporte' => $reporte
+            'reporte' => $reporte,
+            'carreras' => $carreras
         ]);
     }
     public function reporteIndUpdate($id, Request $request)
@@ -253,6 +263,7 @@ class TutorController extends Controller
         $reporte->tipo_tutoria = $request->tipo_tutoria;
         $reporte->duracion = $request->duracion;
         $reporte->observaciones = $request->observaciones;
+        $reporte->carrera_id = $request->carrera_id;
         $reporte->update();
 
         return redirect('/tutor/reportesIndividuales')->with('msg', 'Tutoria individual actualizada satisfactoriamente.');
@@ -291,22 +302,27 @@ class TutorController extends Controller
         $reporte->save();
         return redirect('/home');
     }
-    public function reportesGrupales()
+    public function reportesGrupales($id)
     {
-        $id = Auth::user()->id;
+
+        // $id = Auth::user()->id;
         $tutor = Tutor::where('user_id', '=', $id)->first();
         $tutor_id = $tutor->id;
 
         $reportes = TutoriaGrupal::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->paginate(15);
+        $message = 'No hay reportes';
         return view('tutor.reportesGrupales', [
             'reportes' => $reportes,
+            'message' => $message
         ]);
     }
     public function reporteGrupEdit($id)
     {
+        $carreras = Carrera::all();
         $reporte = TutoriaGrupal::find($id);
         return view('tutor.editReporteGrupal', [
-            'reporte' => $reporte
+            'reporte' => $reporte,
+            'carreras' => $carreras
         ]);
     }
     public function reporteGrupUpdate($id, Request $request)
@@ -318,6 +334,7 @@ class TutorController extends Controller
         $reporte->fecha = $request->fecha;
         $reporte->dinamica = $request->dinamica;
         $reporte->observaciones = $request->observaciones;
+        $reporte->carrera_id = $request->carrera_id;
         $reporte->update();
 
         $id = Auth::user()->id;
@@ -375,5 +392,28 @@ class TutorController extends Controller
         }
 
         return redirect('/tutor/perfil')->with('msg', 'Perfil actualizado satisfactoriamente.');
+    }
+
+    public function printRepInd($id)
+    {
+
+        $reporte = TutoriaIndividual::find($id);
+        $tutor = Tutor::find($reporte->tutor_id);
+        $pdf = PDF::loadView('impresiones.repInd', [
+            'reporte' => $reporte,
+            'tutor' => $tutor
+        ]);
+        return $pdf->download('invoice.pdf');
+    }
+    public function printRepGrup($id)
+    {
+
+        $reporte = TutoriaGrupal::find($id);
+        $tutor = Tutor::find($reporte->tutor_id);
+        $pdf = PDF::loadView('impresiones.repGrup', [
+            'reporte' => $reporte,
+            'tutor' => $tutor
+        ]);
+        return $pdf->download('invoice.pdf');
     }
 }

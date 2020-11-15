@@ -1,6 +1,7 @@
 <?php
 
 use App\Tutor;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -51,14 +52,14 @@ Route::prefix('tutor')->group(function () {
     //Reportes Individuales
     Route::get('/reporteIndividual', 'TutorController@reporteIndividual')->name('tutor.reporteIndividual');
     Route::post('/crearReporteIndividual', 'TutorController@crearReporteIndividual')->name('tutor.crearReporteIndividual');
-    Route::get('/reportesIndividuales', 'TutorController@reportesIndividuales')->name('tutor.reportesIndividuales');
+    Route::get('/reportesIndividuales/{id}', 'TutorController@reportesIndividuales')->name('tutor.reportesIndividuales');
     Route::get('/reporteIndEdit/{id}', 'TutorController@reporteIndEdit')->name('tutor.reporteIndEdit');
     Route::post('/reporteIndUpdate/{id}', 'TutorController@reporteIndUpdate')->name('tutor.reporteIndUpdate');
     Route::get('/reporteIndVer/{id}', 'TutorController@reporteIndVer')->name('tutor.reporteIndVer');
     //Reportes Grupales
     Route::get('/reporteGrupal', 'TutorController@reporteGrupal')->name('tutor.reporteGrupal');
     Route::post('/crearReporteGrupal', 'TutorController@crearReporteGrupal')->name('tutor.crearReporteGrupal');
-    Route::get('/reportesGrupales', 'TutorController@reportesGrupales')->name('tutor.reportesGrupales');
+    Route::get('/reportesGrupales/{id}', 'TutorController@reportesGrupales')->name('tutor.reportesGrupales');
     Route::get('/reporteGrupEdit/{id}', 'TutorController@reporteGrupEdit')->name('tutor.reporteGrupEdit');
     Route::post('/reporteGrupUpdate/{id}', 'TutorController@reporteGrupUpdate')->name('tutor.reporteGrupUpdate');
     Route::get('/reporteGrupVer/{id}', 'TutorController@reporteGrupVer')->name('tutor.reporteGrupVer');
@@ -67,6 +68,10 @@ Route::prefix('tutor')->group(function () {
     Route::get('/perfil', 'TutorController@perfil')->name('tutor.perfil');
     Route::get('/editPerfil', 'TutorController@editPerfil')->name('tutor.editPerfil');
     Route::post('/updatePerfil', 'TutorController@updatePerfil')->name('tutor.updatePerfil');
+
+    //impresiones
+    Route::get('/printRepInd/{id}', 'TutorController@printrepInd')->name('tutor.printRepInd');
+    Route::get('/printRepGrup/{id}', 'TutorController@printrepGrup')->name('tutor.printRepGrup');
 });
 
 Route::prefix('monitor')->group(function () {
@@ -100,4 +105,9 @@ Route::prefix('admin')->group(function () {
 
     //Estadisticas
     Route::get('/estadisticas', 'AdminController@estadisticas')->name('admin.estadisticas');
+});
+
+Route::get('/test', function(){
+    $pdf = PDF::loadView('impresiones.repInd');
+    return $pdf->download('invoice.pdf');
 });

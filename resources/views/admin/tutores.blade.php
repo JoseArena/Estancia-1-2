@@ -27,7 +27,8 @@
             <td class="text-center">{{count(DB::table('alumno_monitor')->where('tutor_id', '=' , $tutor->id)->get())}}</td>
             <td style="white-space: nowrap;
             width: 1%;">
-            <a href="" class="btn btn-sm btn-success text-white">Editar</a>
+            <a href="{{route('tutor.reportesIndividuales', $tutor->user_id)}}" class="btn btn-sm btn-info text-white">Reportes Individuales</a>
+            <a href="{{route('tutor.reportesGrupales', $tutor->user_id)}}" class="btn btn-sm btn-success text-white">Reportes Grupales</a>
             <a href="{{route('admin.alumnosMonitores', $tutor->id)}}" class="btn btn-sm btn-warning text-white">Alumnos Monitores</a>
             </td>
         </tr>

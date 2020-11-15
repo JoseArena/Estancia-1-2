@@ -3,12 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 10, 2020 at 06:54 PM
+-- Generation Time: Nov 15, 2020 at 10:37 PM
 -- Server version: 10.4.10-MariaDB
 -- PHP Version: 7.3.12
-drop database tutorias;
-create database tutorias;
-use tutorias;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
@@ -167,12 +165,11 @@ CREATE TABLE IF NOT EXISTS `carreras` (
 --
 
 INSERT INTO `carreras` (`id`, `carrera`, `created_at`, `updated_at`) VALUES
-(1, 'Ingeniería en software', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
-(2, 'Ingeniería en animación y efectos visuales', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
-(3, 'Licenciatura en nutrición', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
-(4, 'Licenciatura en administración de empresas turísticas', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
-(5, 'Terapia física', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
-(6, 'electricidad', '2020-10-10 08:32:56', '2020-10-10 08:32:56');
+(1, 'Ingeniería en Software', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
+(2, 'Ingeniería en Animación y Efectos Visuales', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
+(3, 'Licenciatura en Nutrición', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
+(4, 'Licenciatura en Administración de Empresas Turísticas', '2020-10-10 02:32:50', '2020-10-10 02:32:50'),
+(5, 'Terapia física', '2020-10-10 02:32:50', '2020-10-10 02:32:50');
 
 -- --------------------------------------------------------
 
@@ -563,7 +560,7 @@ CREATE TABLE IF NOT EXISTS `tutoria_grupal` (
 
 INSERT INTO `tutoria_grupal` (`id`, `cuatrimestre`, `turno`, `grupo`, `carrera_id`, `dinamica`, `observaciones`, `fecha`, `tutor_id`, `created_at`, `updated_at`) VALUES
 (1, 4, 'Vespertino', 'B', '1', 'Ejercicios de programacion', 'padecen deficit de atencion', '2020-10-14 00:00:00', 1, '2020-11-07 18:27:14', '2020-11-08 00:27:14'),
-(2, 4, 'Matutino', 'B', '2', 'programacion concurrente', 'Un buen grupo', '2020-11-02 00:00:00', 1, '2020-11-07 18:33:15', '2020-11-08 00:33:15');
+(2, 4, '3', 'B', '3', 'programacion concurrente', 'Un buen grupo', '2020-11-02 00:00:00', 1, '2020-11-14 20:53:43', '2020-11-15 02:53:43');
 
 -- --------------------------------------------------------
 
@@ -582,20 +579,23 @@ CREATE TABLE IF NOT EXISTS `tutoria_individual` (
   `duracion` int(11) DEFAULT NULL,
   `observaciones` varchar(1500) DEFAULT NULL,
   `tutor_id` int(11) DEFAULT NULL,
+  `carrera_id` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
-  KEY `tutor_id` (`tutor_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  KEY `tutor_id` (`tutor_id`),
+  KEY `carrera_id` (`carrera_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tutoria_individual`
 --
 
-INSERT INTO `tutoria_individual` (`id`, `alumno`, `cuatrimestre`, `turno`, `fecha`, `tipo_tutoria`, `duracion`, `observaciones`, `tutor_id`, `created_at`, `updated_at`) VALUES
-(2, 'Ivan Ramirez', 4, 'Matutino', '2020-10-19 00:00:00', 'Academica', 30, 'deficit de atencio', 1, '2020-10-22 01:51:19', '2020-10-22 07:51:19'),
-(3, 'Jose Arena', 7, 'Matutino', '2020-10-20 00:00:00', 'Administrativa', 20, 'Fuma piedra.', 1, '2020-10-22 07:50:10', '2020-10-22 07:50:10'),
-(4, 'Cruz Tadeo', 6, 'Vespertino', '2020-11-02 00:00:00', 'Academica', 20, 'Problemas.', 1, '2020-11-04 15:22:25', '2020-11-04 21:22:25');
+INSERT INTO `tutoria_individual` (`id`, `alumno`, `cuatrimestre`, `turno`, `fecha`, `tipo_tutoria`, `duracion`, `observaciones`, `tutor_id`, `carrera_id`, `created_at`, `updated_at`) VALUES
+(2, 'Ivan Ramirez', 4, 'Matutino', '2020-10-19 00:00:00', 'Academica', 30, 'deficit de atencio', 1, 1, '2020-11-14 20:39:39', '2020-10-22 07:51:19'),
+(3, 'Jose Arena', 7, 'Matutino', '2020-10-20 00:00:00', 'Administrativa', 20, 'Fuma piedra.', 1, 1, '2020-11-14 20:39:44', '2020-10-22 07:50:10'),
+(4, 'Cruz Tadeo', 6, 'Vespertino', '2020-11-02 00:00:00', 'Academica', 20, 'Problemas.', 1, 1, '2020-11-14 20:39:47', '2020-11-04 21:22:25'),
+(5, 'Paco', 2, 'Matutino', '2020-11-12 00:00:00', 'Administrativa', 30, 'pruebas pruebas', 1, 5, '2020-11-14 20:58:36', '2020-11-15 02:58:36');
 
 -- --------------------------------------------------------
 
@@ -718,7 +718,8 @@ ALTER TABLE `tutoria_grupal`
 -- Constraints for table `tutoria_individual`
 --
 ALTER TABLE `tutoria_individual`
-  ADD CONSTRAINT `tutoria_individual_ibfk_1` FOREIGN KEY (`tutor_id`) REFERENCES `tutores` (`id`);
+  ADD CONSTRAINT `tutoria_individual_ibfk_1` FOREIGN KEY (`tutor_id`) REFERENCES `tutores` (`id`),
+  ADD CONSTRAINT `tutoria_individual_ibfk_2` FOREIGN KEY (`carrera_id`) REFERENCES `carreras` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

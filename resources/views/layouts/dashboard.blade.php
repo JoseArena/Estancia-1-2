@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Tutorias UPB</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -109,10 +109,10 @@
                 <a href="{{route('tutor.alumnosTutorados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Individuales</button>
                 <a href="{{route('tutor.reporteIndividual')}}" class="list-group-item list-group-item-action bg-light" >Crear Reporte</a>
-                <a href="{{route('tutor.reportesIndividuales')}}" class="list-group-item list-group-item-action bg-light" >Reportes Individuales</a>
+                <a href="{{route('tutor.reportesIndividuales', auth()->user()->tutor()->first()->id)}}" class="list-group-item list-group-item-action bg-light" >Reportes Individuales</a>
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Grupales</button>
                 <a href="{{route('tutor.reporteGrupal')}}" class="list-group-item list-group-item-action bg-light" >Crear Reporte</a>
-                <a href="{{route('tutor.reportesGrupales')}}" class="list-group-item list-group-item-action bg-light" >Reportes Grupales</a>
+                <a href="{{route('tutor.reportesGrupales', auth()->user()->tutor()->first()->id)}}" class="list-group-item list-group-item-action bg-light" >Reportes Grupales</a>
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Cuentas Desactivadas</button>
                 <a href="{{route('tutor.monitoresDesactivados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
                 <a href="{{route('tutor.tutoradosDesactivados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
