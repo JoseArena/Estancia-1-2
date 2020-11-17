@@ -233,4 +233,24 @@ class AdminController extends Controller
             'alumnos' => $alumnos
         ]);
     }
+
+    public function reportesTutor(Request $request,$id)
+    {
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_id = $tutor->id;
+
+        $fInicio = $request->get('fI');
+        $fFin = $request->get('fF');
+
+        $fInicio2 = $request->get('fI2');
+        $fFin2 = $request->get('fF2');
+
+        $reportes = TutoriaGrupal::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->BuscarPor($fInicio, $fFin)->paginate(5);
+        $reportes2 = TutoriaIndividual::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->BuscarPor($fInicio2, $fFin2)->paginate(5);
+        return view('admin.reportesTutor', [
+            'reportes' => $reportes,
+            'reportes2' => $reportes2,
+            'tutor_id' => $tutor_id
+        ]);
+    }
 }

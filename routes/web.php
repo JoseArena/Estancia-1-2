@@ -105,6 +105,7 @@ Route::prefix('admin')->group(function () {
 
     //Estadisticas
     Route::get('/estadisticas', 'AdminController@estadisticas')->name('admin.estadisticas');
+    Route::get('/reportesTutor/{id}', 'AdminController@reportesTutor')->name('admin.reportesTutor');
 });
 
 Route::get('/test', function(){
