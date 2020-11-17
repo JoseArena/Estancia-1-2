@@ -10,6 +10,7 @@ use App\Tutor;
 use App\TutoriaGrupal;
 use App\TutoriaIndividual;
 use Barryvdh\DomPDF\Facade as PDF;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -414,6 +415,6 @@ class TutorController extends Controller
             'reporte' => $reporte,
             'tutor' => $tutor
         ]);
-        return $pdf->download('invoice.pdf');
+        return $pdf->download('Reporte Grupal - Grupo ' . $reporte->grupo . ' - ' . Carbon::parse($reporte->fecha)->format('d-m-Y') . '.pdf');
     }
 }

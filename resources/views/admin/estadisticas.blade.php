@@ -56,6 +56,8 @@
                 <td>{{\Illuminate\Support\Facades\DB::table('carreras')->where('id', $tutor->carrera_id)->value('carrera')}}</td>
                 <td style="white-space: nowrap;
                 width: 1%;">
+                 <a href="{{route('tutor.reportesIndividuales', $tutor->user_id)}}" class="btn btn-sm btn-info text-white">Reportes Individuales</a>
+                 <a href="{{route('tutor.reportesGrupales', $tutor->user_id)}}" class="btn btn-sm btn-success text-white">Reportes Grupales</a>
                 <a href="{{route('admin.editarTutor', $tutor->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
                 <a href="{{route('admin.alumnosMonitores', $tutor->id)}}" class="btn btn-sm btn-warning text-white">Alumnos Monitores</a>
                 </td>
