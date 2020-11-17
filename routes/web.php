@@ -107,7 +107,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/estadisticas', 'AdminController@estadisticas')->name('admin.estadisticas');
 });
 
-Route::get('/test', function(){
-    $pdf = PDF::loadView('impresiones.repInd');
-    return $pdf->download('invoice.pdf');
-});
+// Route::get('/test', function () {
+//     $pdf = PDF::loadView('impresiones.repInd');
+//     return $pdf->download('invoice.pdf');
+// });
