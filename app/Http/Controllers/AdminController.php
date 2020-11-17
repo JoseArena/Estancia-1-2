@@ -233,4 +233,66 @@ class AdminController extends Controller
             'alumnos' => $alumnos
         ]);
     }
+
+    public function reportesTutor(Request $request,$id)
+    {
+        $tutor = Tutor::where('user_id', '=', $id)->first();
+        $tutor_id = $tutor->id;
+
+        $fInicio = $request->get('fI');
+        $fFin = $request->get('fF');
+
+        $fInicio2 = $request->get('fI2');
+        $fFin2 = $request->get('fF2');
+
+        $reportes = TutoriaGrupal::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->BuscarPor($fInicio, $fFin)->paginate(5);
+        $reportes2 = TutoriaIndividual::where('tutor_id', '=', $tutor_id)->orderBy('created_at', 'DESC')->BuscarPor($fInicio2, $fFin2)->paginate(5);
+        return view('admin.reportesTutor', [
+            'reportes' => $reportes,
+            'reportes2' => $reportes2,
+            'tutor_id' => $tutor_id
+        ]);
+    }
+
+    public function editarTutor($id)
+    {
+        $carreras = Carrera::all();
+        $tutor = Tutor::find($id);
+        return view('admin.editarTutor', [
+            'tutor' => $tutor,
+            'carreras' => $carreras
+        ]);
+    }
+
+    public function actualizarTutor($id, Request $request)
+    {
+        $tutor = Tutor::find($id);
+        $tutor->nombres = $request->nombres;
+        $tutor->apellidoM = $request->apellidoM;
+        $tutor->apellidoP = $request->apellidoP;
+        $tutor->carrera_id = $request->carrera;
+        $tutor->descripcion = $request->descripcion;
+        $tutor->horario = $request->horario;
+        $tutor->update();
+        return redirect('/admin/tutores')->with('msg', 'Tutor actualizado satisfactoriamente.');
+    }
+
+    public function editarPsicologo($id)
+    {
+        $psicologo = Psicologo::find($id);
+        return view('admin.editarPsicologo', [
+            'psicologo' => $psicologo,
+        ]);
+    }
+
+    public function actualizarPsicologo($id, Request $request)
+    {
+        $psicologo = Psicologo::find($id);
+        $psicologo->nombres = $request->nombres;
+        $psicologo->apellidoM = $request->apellidoM;
+        $psicologo->apellidoP = $request->apellidoP;
+        $psicologo->descripcion = $request->descripcion;
+        $psicologo->update();
+        return redirect('/admin/psicologos')->with('msg', 'Psicologo actualizado satisfactoriamente.');
+    }
 }
