@@ -47,7 +47,7 @@
             @foreach($tutores as  $tutor)
             <tr>
                 <th scope="row">
-                    <a href="{{route('admin.reportesTutor', $tutor->user_id)}}" class="text-dark">
+                    <a href="{{route('admin.reportesTutor', $tutor->user_id)}}" >
                         {{$tutor->nombres}}
                     </a>
                 </th>
@@ -56,7 +56,7 @@
                 <td>{{\Illuminate\Support\Facades\DB::table('carreras')->where('id', $tutor->carrera_id)->value('carrera')}}</td>
                 <td style="white-space: nowrap;
                 width: 1%;">
-                <a href="#" class="btn btn-sm btn-success text-white">Editar</a>
+                <a href="{{route('admin.editarTutor', $tutor->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
                 <a href="{{route('admin.alumnosMonitores', $tutor->id)}}" class="btn btn-sm btn-warning text-white">Alumnos Monitores</a>
                 </td>
             </tr>
@@ -99,7 +99,7 @@
                 <td>{{$psicologo->apellidoM}}</td>
                 <td style="white-space: nowrap;
                 width: 1%;">
-                <a href="" class="btn btn-sm btn-success text-white">Editar</a>
+                <a href="{{route('admin.editarPsicologo', $psicologo->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
                 </td>
             </tr>
             @endforeach

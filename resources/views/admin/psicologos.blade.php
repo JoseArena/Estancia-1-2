@@ -23,7 +23,7 @@
             <td>{{$psicologo->apellidoP}}</td>
             <td style="white-space: nowrap;
             width: 1%;">
-            <a href="" class="btn btn-sm btn-success text-white">Editar</a>
+            <a href="{{route('admin.editarPsicologo', $psicologo->id)}}" class="btn btn-sm btn-success text-white">Editar</a>
             </td>
         </tr>
         @endforeach

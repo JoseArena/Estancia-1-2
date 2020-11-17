@@ -103,6 +103,12 @@ Route::prefix('admin')->group(function () {
     Route::post('/anuncioUpdate/{id}', 'AdminController@anuncioUpdate')->name('admin.anuncioUpdate');
     Route::get('/anuncioDelete/{id}', 'AdminController@anuncioDelete')->name('admin.anuncioDelete');
 
+    //editar
+    Route::get('/editarTutor/{id}', 'AdminController@editarTutor')->name('admin.editarTutor');
+    Route::post('/actualizarTutor/{id}', 'AdminController@actualizarTutor')->name('admin.actualizarTutor');
+    Route::get('/editarPsicologo/{id}', 'AdminController@editarPsicologo')->name('admin.editarPsicologo');
+    Route::post('/actualizarPsicologo/{id}', 'AdminController@actualizarPsicologo')->name('admin.actualizarPsicologo');
+
     //Estadisticas
     Route::get('/estadisticas', 'AdminController@estadisticas')->name('admin.estadisticas');
     Route::get('/reportesTutor/{id}', 'AdminController@reportesTutor')->name('admin.reportesTutor');
