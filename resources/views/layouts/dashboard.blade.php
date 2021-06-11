@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Tutorias UPB</title>
+    <title>Servicios Psicologicos</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -24,7 +24,7 @@
 <div id="app">
     <nav class="navbar navbar-expand-md navbar-light shadow-sm bg-primary">
         <a class="navbar-brand text-white" href="{{ url('/') }}">
-            Tutorias UPB
+             Servicio psicologicos
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -78,7 +78,7 @@
                             <a href="{{route('tutor.perfil')}}" class="dropdown-item">Perfil</a>
                             @endrole
                             @hasrole('Admin')
-                            <a href="{{route('admin.perfil')}}" class="dropdown-item">Perfil</a>
+                          {{--  <a href="{{route('admin.perfil')}}" class="dropdown-item">Perfil</a>  --}}
                             @endrole
                         </div>
                     </li>
@@ -99,8 +99,8 @@
             @endif
             </div>
             <div class="list-group list-group-flush">
-                @hasrole('Tutor')
-                <a href="/home" class="list-group-item list-group-item-action bg-light">Inicio</a>
+              {{--   @hasrole('Tutor')
+               <a href="/home" class="list-group-item list-group-item-action bg-light">Inicio</a>
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Crear Cuentas</button>
                 <a href="{{route('tutor.crearMonitor')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Monitor</a>
                 <a href="{{route('tutor.crearTutorado')}}" class="list-group-item list-group-item-action bg-light" >Crear Alumno Tutorado</a>
@@ -116,23 +116,35 @@
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Cuentas Desactivadas</button>
                 <a href="{{route('tutor.monitoresDesactivados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Monitores</a>
                 <a href="{{route('tutor.tutoradosDesactivados')}}" class="list-group-item list-group-item-action bg-light" >Alumnos Tutorados</a>
-                @endrole
+                @endrole --}} 
                 @hasrole('Admin')
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Creacion de Cuentas</button>
-                <a href="{{route('admin.crearTutor')}}" class="list-group-item list-group-item-action bg-light" >Crear Tutor</a>
+              {{--  <a href="route('admin.c} }}rearTutor')}}" class="list-group-item list-group-item-action bg-light" >Crear Tutor</a>--}} 
                 <a href="{{route('admin.crearPsicologo')}}" class="list-group-item list-group-item-action bg-light" >Crear Psicologo</a>
-                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Recibidos</button>
+               {{-- <button disabled class="list-group-item list-group-item-action bg-primary text-white">Reportes Recibidos</button>
                 <a href="{{route('admin.reportesGrupales')}}" class="list-group-item list-group-item-action bg-light">Reportes Grupales</a>
-                <a href="{{route('admin.reportesIndividuales')}}" class="list-group-item list-group-item-action bg-light">Reportes Individuales</a>
+                <a href="{{route('admin.reportesIndividuales')}}" class="list-group-item list-group-item-action bg-light">Reportes Individuales</a> --}} 
+                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Informes Recibidos</button>
+                <a href="{{route('admin.verInformeAdmin')}}" class="list-group-item list-group-item-action bg-light">Informe psicologico</a>
+                <a href="{{route('admin.vercanalizacionesAdmin')}}" class="list-group-item list-group-item-action bg-light">Canalizacion psicologica</a>
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Cuentas</button>
-                <a href="{{route('admin.Tutores')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Tutores</a>
+                {{-- <a href="{{route('admin.Tutores')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Tutores</a> --}}
                 <a href="{{route('admin.Psicologos')}}" class="list-group-item list-group-item-action bg-light">Cuentas de Psicologos</a>
-                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Anuncios</button>
+                {{-- <button disabled class="list-group-item list-group-item-action bg-primary text-white">Anuncios</button>
                 <a href="{{route('admin.crearAnuncio')}}" class="list-group-item list-group-item-action bg-light">Nuevo anuncio</a>
                 <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios en Plataforma</a>
-                {{-- <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios Desactivados</a> --}}
+                <a href="{{route('admin.anuncios')}}" class="list-group-item list-group-item-action bg-light">Anuncios Desactivados</a> 
                 <button disabled class="list-group-item list-group-item-action bg-primary text-white">Extras</button>
-                <a href="{{route('admin.estadisticas')}}" class="list-group-item list-group-item-action bg-light">Estadistica</a>
+                <a href="{{route('admin.estadisticas')}}" class="list-group-item list-group-item-action bg-light">Estadistica</a>--}}
+                @endrole
+                 @hasrole('Psicologo')
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Creacion de informes</button>
+                <a href="{{route('psicologo.crearInforme')}}" class="list-group-item list-group-item-action bg-light" >Crear Informe</a>
+                <a href="{{route('psicologo.crearCanal')}}" class="list-group-item list-group-item-action bg-light" >Crear Canalizacion</a>
+                <button disabled class="list-group-item list-group-item-action bg-primary text-white">Ver</button>
+                <a href="{{route('psicologo.verInformes')}}" class="list-group-item list-group-item-action bg-light" >Ver Informe </a>
+                <a href="{{route('psicologo.verCanal')}}" class="list-group-item list-group-item-action bg-light" >Ver canalizacion</a>
+                
                 @endrole
 
             </div>

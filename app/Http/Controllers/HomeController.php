@@ -27,9 +27,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //$role = Role::create(['name' => 'Psicologo']);
-        // $user = Auth::user();
-        // $user->removeRole('Tutor');
+        //$role = Role::create(['name' => 'Admin']);
+         //$user = Auth::user();
+         //$user->assignRole('Admin');
         $anuncios = Anuncio::where('activo', 1)->orderBy('created_at', 'DESC')->paginate(15);
         if (isset($anuncios)) {
             return view('home', [

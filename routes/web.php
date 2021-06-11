@@ -22,6 +22,27 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::prefix('psicologo')->group(function(){
+    //creacion, edicion, actualizacion y vista de informes
+    Route::get('/informe.pdf/{id}', 'PsicologoController@imprimirInforme')->name('psicologo.imprimirInforme');
+    Route::get('/crearInforme','PsicologoController@crearInforme')->name('psicologo.crearInforme');
+    Route::post('/storeInforme', 'PsicologoController@storeInforme')->name('psicologo.storeInforme');
+    Route::get('/verInformes', 'PsicologoController@verInformes')->name('psicologo.verInformes');
+    Route::get('/editarInforme/{id}', 'PsicologoController@editarInforme')->name('psicologo.editarInforme');
+    Route::post('/actualizarInforme/{id}', 'PsicologoController@actualizarInforme')->name('psicologo.actualizarInforme');
+    Route::get('/vistaInforme/{id}', 'PsicologoController@vistaInforme')->name('psicologo.vistaInforme');
+    //Route::get('/imprimirInforme/{id}', 'PsicologoController@imprimirInforme')->name('psicologo.imprimirInforme');
+    //craciones, edicion, actualizacion y vista de canalizacion
+    Route::get('/crearCanal','PsicologoController@crearCanal')->name('psicologo.crearCanal');
+    Route::post('/storeCanal', 'PsicologoController@storeCanal')->name('psicologo.storeCanal');
+    Route::get('/verCanal', 'PsicologoController@verCanal')->name('psicologo.verCanal');
+    Route::get('/editCanal/{id}', 'PsicologoController@editCanal')->name('psicologo.editCanal');
+    Route::post('/actualizarCanal/{id}', 'PsicologoController@actualizarCanal')->name('psicologo.actualizarCanal');
+    Route::get('/vistaCanalizacion/{id}', 'PsicologoController@vistaCanalizacion')->name('psicologo.vistaCanalizacion');
+    Route::get('/canalizacion.pdf/{id}', 'PsicologoController@imprimirCanalizacion')->name('psicologo.imprimirCanalizacion');
+   
+    
+});
 
 Route::prefix('tutor')->group(function () {
     //alumnos monitores
@@ -92,9 +113,17 @@ Route::prefix('admin')->group(function () {
     Route::get('/crearPsicologo', 'AdminController@crearPsicologo')->name('admin.crearPsicologo');
     Route::post('/storePsicologo', 'AdminController@storePsicologo')->name('admin.storePsicologo');
     Route::get('/psicologos', 'AdminController@showPsicologos')->name('admin.Psicologos');
+    Route::get('/editarPsicologo/{id}', 'AdminController@editarPsicologo')->name('admin.editarPsicologo');
+    Route::post('/actualizarPsicologo/{id}', 'AdminController@actualizarPsicologo')->name('admin.actualizarPsicologo');
     //Reportes Grupales
     Route::get('/reportesGrupales', 'AdminController@reportesGrupales')->name('admin.reportesGrupales');
     Route::get('/reportesIndividuales', 'AdminController@reportesIndividuales')->name('admin.reportesIndividuales');
+
+     //ver informes psicologicos
+    Route::get('/verInformeAdmin', 'AdminController@verInformeAdmin')->name('admin.verInformeAdmin');
+
+     //ver Canalizaciones pscologicas
+    Route::get('/vercanalizacionesAdmin', 'AdminController@vercanalizacionesAdmin')->name('admin.vercanalizacionesAdmin');
     //anuncios
     Route::get('/anuncios', 'AdminController@anuncios')->name('admin.anuncios');
     Route::get('/crearAnuncio', 'AdminController@crearAnuncio')->name('admin.crearAnuncio');

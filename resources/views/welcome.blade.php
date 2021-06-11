@@ -21,17 +21,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
             <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">Universidad Politécnica de Bacalar</a>
+                <a class="navbar-brand js-scroll-trigger" href="#page-top">Secretaria de Salud Zona Norte</a>
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">Acerca de</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Cargos</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#portfolio">Portafolio</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contacto</a></li>
+                        
                         @auth
                             <li class="nav-item">
-                                <a class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Home</a>
+                                <a class="nav-link js-scroll-trigger" href="{{ url('/home') }}">Inicio</a>
                             </li>
                             @else
 
@@ -40,7 +37,7 @@
                             </li>
                             @if (Route::has('register'))
                             <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" href="{{ route('register') }}">Register</a>
+                            <a class="nav-link js-scroll-trigger" href="{{ route('register') }}">Registrar</a>
                             </li>
                             @endif
                         @endauth
@@ -55,21 +52,14 @@
                 <div class="row h-100 align-items-center justify-content-center text-center">
                     {{-- Logos --}}
                     <div class="container col-12 row">
-                        <div class="col-6">
-                            <img src="{{asset('img/logo_upb.png')}}" alt="" height="300px" width="400px">
-                        </div>
-                        <div class="col-6">
-                            <img src="{{asset('img/logo_tutorias.png')}}" alt="" height="300px" width="400px">
-                        </div>
+                        
                     </div>
                     <div class="col-lg-10 align-self-end">
-                        <h1 class="text-uppercase text-white font-weight-bold">PROGRAMA DE TUTORÍAS</h1>
+                        <h1 class="text-uppercase text-white font-weight-bold">Psicologia</h1>
                         <hr class="divider my-4" />
                     </div>
                     <div class="col-lg-8 align-self-baseline">
-                        <p class="text-white-75 font-weight-light mb-5">Consolidar a las tutorías como uno de los servicios de la Universidad Politécnica de Bacalar ofrecido
-                            a los alumnos inscritos para disminuir la reprobación y la deserción, aumentando así el indicador
-                            de eficiencia terminal.</p>
+                        <p class="text-white-75 font-weight-light mb-5">Programa de psicologia de la zona norte, administracion de perfiles y cuentas de los psicologos por parte de un administrador.</p>
                         <a class="btn btn-xl js-scroll-trigger text-white" style="background-color: #07689F" href="#about">Más Información </a>
                     </div>
                 </div>
@@ -80,117 +70,19 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <h2 class="text-white mt-0">CONOCE MÁS SOBRE LAS TUTORÍAS Y ASESORÍAS </h2>
+                        <h2 class="text-white mt-0">CONOCE MÁS SOBRE LA PSICOLOGIA </h2>
                         <hr class="divider light my-4" />
-                        <p class="text-white-50 mb-4">La tutoría en un proceso de acompañamiento académico durante la formación de los estudiantes, tendiente a mejorar su rendimiento académico, lograr los perfiles de egreso, desarrollar hábitos de estudio y trabajo, cuya herramienta básica se encuentra en los procesos de orientación tutorial y la canalización a otras instancias de apoyo. </p>
+                        <p class="text-white-50 mb-4">La psicología es la ciencia que estudia de forma teórica y práctica los aspectos, sociales, culturales y biológicos que influyen en el comportamiento humano, tanto a nivel individual como social, y el funcionamiento y desarrollo de la mente humana</p>
                         <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Empezar</a>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Services-->
-        <section class="page-section" id="services">
-            <div class="container">
-                <h2 class="text-center mt-0">CARGOS</h2>
-                <hr class="divider my-4" />
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fa-chalkboard-teacher text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">TUTOR</h3>
-                            <p class="text-muted mb-0">Un tutor es un profesor de tiempo completo , que atiende a los estudiantes de un grupo a su cargo mediante la observación de su desempeño académico y socio afectivo, dándoles seguimiento donde los orienta y ayuda para su desarrollo integral.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fas fa-user text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">ALUMNO MONITOR</h3>
-                            <p class="text-muted mb-0">Un alumno monitor, es aquel que apoya y guía el aprendizaje de los alumnos o un grupo en necesidades educativas especiales, siempre dentro del contexto académico e institucional.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fas fa-users text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">ALUMNO TUTORADO</h3>
-                            <p class="text-muted mb-0">Es todo estudiante, quien recibe orientación y seguimiento de su proceso, del desempeño académico y socio afectivo a través de un tutor desde su ingreso, en cada periodo escolar y hasta su titulación.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 text-center">
-                        <div class="mt-5">
-                            <i class="fas fa-4x fas fa-street-view text-primary mb-4"></i>
-                            <h3 class="h4 mb-2">PSICÓLOGO</h3>
-                            <p class="text-muted mb-0">Los psicólogos educativos brindan conocimientos competentes, éticos y profesionales, además de servicios de orientación educacional, con el propósito de ayudar a alumnos existentes y potenciales a lograr sus objetivos personales y académicos.  </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Portfolio-->
-        <div id="portfolio">
-            <div class="container-fluid p-0">
-                <div class="row no-gutters">
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="{{asset('img/portfolio/fullsize/1.jpg')}}">
-                            <img class="img-fluid" src="{{asset('img/portfolio/fullsize/1.jpg')}}" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">TUTOR</div>
-                                <div class="project-name">Tutorias Individuales</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="{{asset('img/portfolio/fullsize/2.jpg')}}">
-                            <img class="img-fluid" src="{{asset('img/portfolio/thumbnails/2.jpg')}}" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">TUTOR</div>
-                                <div class="project-name">Tutorias Grupales</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="{{asset('img/portfolio/fullsize/3.jpg')}}">
-                            <img class="img-fluid" src="{{asset('img/portfolio/thumbnails/3.jpg')}}" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">TUTOR</div>
-                                <div class="project-name">Canalizar para apoyo psicológico</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="{{asset('img/portfolio/fullsize/4.jpg')}}">
-                            <img class="img-fluid" src="{{asset('img/portfolio/fullsize/4.jpg')}}" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">ALUMNO MONITOR (PROAM)</div>
-                                <div class="project-name">ALUMNO MONITOR</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="{{asset('img/portfolio/fullsize/5.jpg')}}">
-                            <img class="img-fluid" src="{{asset('img/portfolio/fullsize/5.jpg')}}" alt="" />
-                            <div class="portfolio-box-caption">
-                                <div class="project-category text-white-50">ALUMNO MONITOR (PROAM)</div>
-                                <div class="project-name">TUTORADO</div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-4 col-sm-6">
-                        <a class="portfolio-box" href="{{asset('img/portfolio/fullsize/6.jpg')}}">
-                            <img class="img-fluid" src="{{asset('img/portfolio/fullsize/6.jpg')}}" alt="" />
-                            <div class="portfolio-box-caption p-3">
-                                <div class="project-category text-white-50">PSICÓLOGO </div>
-                                <div class="project-name">Apoyo psicológico</div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Call to action-->
+       
         <section class="page-section bg-dark text-white">
             <div class="container text-center">
-                <h2 class="mb-4">Universidad Politécnica de Bacalar</h2>
-                <a class="btn btn-light btn-xl" href="http://www.upb.edu.mx/">Visitar sitio web</a>
+                <h2 class="mb-4">SERVICIOS ESTATALES DE SALUD</h2>
+                <a class="btn btn-light btn-xl" href="https://qroo.gob.mx/sesa">Visitar sitio web</a>
             </div>
         </section>
         <!-- Contact-->
@@ -200,20 +92,18 @@
                     <div class="col-lg-8 text-center">
                         <h2 class="mt-0">Contacto</h2>
                         <hr class="divider my-4" />
-                        <p class="text-muted mb-5">UNIVERSIDAD POLITÉCNICA DE BACALAR <br>          
-                            Avenida 39 entre calle 50 y 54, C.P. 77930,Bacalar, Q.Roo.</p>
+                        <p class="text-muted mb-5">SESA <br>          
+                            Agregar direccion.</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
                         <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
-                        <div> 983 733 5292</div>
-                        <div> 983 168 2490</div>
+                       
                     </div>
                     <div class="col-lg-4 mr-auto text-center">
                         <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-                        <!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
-                        <a class="d-block" href="mailto:contact@yourwebsite.com">upbacalar@upb.edu.mx</a>
+                        
                     </div>
                 </div>
             </div>

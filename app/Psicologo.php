@@ -17,4 +17,11 @@ class Psicologo extends Model
             return $query->where($tipo, 'like', "%$buscar%");
         }
     }
+
+    public function nombreCompleto($id)
+    {
+        $psicologo = Psicologo::find($id);
+        $fullName = ' ' . $psicologo->nombres . ' ' . $psicologo->apellidoP. ' ' . $psicologo->apellidoM ;
+        return $fullName;
+    }
 }

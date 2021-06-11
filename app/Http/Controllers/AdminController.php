@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\AlumnoMonitor;
+use App\Admin;
 use App\Anuncio;
+use App\canalizacion;
 use App\Carrera;
+use App\informes;
 use App\Psicologo;
 use App\Tutor;
 use App\TutoriaGrupal;
@@ -23,6 +26,7 @@ class AdminController extends Controller
         $this->middleware('auth');
     }
 
+   
     //perfil
     public function perfil()
     {
@@ -31,6 +35,7 @@ class AdminController extends Controller
             'admin' => $admin
         ]);
     }
+
     public function editPerfil()
     {
         $admin = auth()->user()->admin()->first();
@@ -294,5 +299,25 @@ class AdminController extends Controller
         $psicologo->descripcion = $request->descripcion;
         $psicologo->update();
         return redirect('/admin/psicologos')->with('msg', 'Psicologo actualizado satisfactoriamente.');
+    }
+
+    public function verInformeAdmin()
+    {
+        
+       
+        $Informe ['Informe'] = informes::orderBy('created_at', 'DESC')->paginate(15);
+        return view('admin.verInformeAdmin',$Informe);
+    }
+
+    
+
+
+
+    public function vercanalizacionesAdmin()
+    {
+        
+       
+        $canalizacion ['canalizacion'] = canalizacion::orderBy('created_at', 'DESC')->paginate(15);
+        return view('admin.vercanalizacionesAdmin',$canalizacion)->with('msg', 'Usted ha recibido nuevas canalizaciones');
     }
 }
